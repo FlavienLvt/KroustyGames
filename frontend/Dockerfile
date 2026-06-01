@@ -1,20 +1,20 @@
-# Utiliser une image Node.js comme base
+# Use Node.js as the base image
 FROM node:18
 
-# Définir le répertoire de travail
+# Set the working directory
 WORKDIR /app
 
-# Copier les fichiers package.json et package-lock.json
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Installer les dépendances
+# Install dependencies
 RUN npm install
 
-# Copier le reste des fichiers
+# Copy the rest of the application files
 COPY . .
 
-# Exposer le port utilisé par le serveur de développement
+# Expose the port used by Vite
 EXPOSE 8080
 
-# Commande pour démarrer le serveur de développement
+# Start the development server
 CMD ["npm", "run", "dev"]
