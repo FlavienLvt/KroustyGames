@@ -3,48 +3,6 @@ const Game = require('../models/Game');
 
 const gameSeed = [
   {
-    title: 'Bloxd.io',
-    slug: 'bloxd-io',
-    image: 'https://placehold.co/600x400/2a2a35/ffffff?text=Bloxd.io',
-    badge: 'Top',
-    badgeType: 'yellow',
-    description: 'Un jeu multijoueur bac à sable rapide et accessible.',
-    sections: ['top-picks'],
-    orderIndex: 1
-  },
-  {
-    title: 'Archer',
-    slug: 'archer',
-    image: 'https://placehold.co/300x200/2a2a35/ffffff?text=Archer',
-    description: 'Teste ta précision sur des défis de tir simples et nerveux.',
-    sections: ['top-picks'],
-    orderIndex: 2
-  },
-  {
-    title: 'Moto X3M',
-    slug: 'moto-x3m',
-    image: 'https://placehold.co/300x200/2a2a35/ffffff?text=Moto',
-    description: 'Course arcade avec des niveaux truffés d’obstacles.',
-    sections: ['top-picks'],
-    orderIndex: 3
-  },
-  {
-    title: 'Veck.io',
-    slug: 'veck-io',
-    image: 'https://placehold.co/300x200/2a2a35/ffffff?text=Veck.io',
-    description: 'Une arène compétitive pour des parties courtes.',
-    sections: ['top-picks'],
-    orderIndex: 4
-  },
-  {
-    title: 'Color',
-    slug: 'color',
-    image: 'https://placehold.co/300x200/2a2a35/ffffff?text=Color',
-    description: 'Un mini-jeu rapide basé sur la reconnaissance visuelle.',
-    sections: ['top-picks'],
-    orderIndex: 5
-  },
-  {
     title: '2048',
     slug: '2048',
     image: 'https://placehold.co/300x200/1e1e24/ffffff?text=2048',
