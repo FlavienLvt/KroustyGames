@@ -10,17 +10,15 @@
       <section class="game-section">
         <h2 class="section-title">Sélection pour vous</h2>
         <div class="top-picks-grid">
-          <router-link to="/games/2048" custom v-slot="{ navigate }">
-            <div 
-              v-for="(game, index) in topPicks" 
-              :key="game.id" 
-              :class="['game-card', { 'featured': index === 0 }]"
-              @click="index === 0 ? navigate() : null" 
-            >
+          <div
+            v-for="(game, index) in topPicks"
+            :key="game.id"
+            :class="['game-card', { 'featured': index === 0 }]"
+            @click="navigateToGame(game.slug)"
+          >
               <div v-if="game.badge" class="badge" :class="game.badgeType">{{ game.badge }}</div>
               <img :src="game.image" :alt="game.title" class="game-image" />
-            </div>
-          </router-link>
+          </div>
         </div>
       </section>
   
@@ -31,7 +29,7 @@
             v-for="game in featuredGames" 
             :key="game.id" 
             class="game-card" 
-            @click="naviguerVersJeu(game.namePath)"
+          @click="navigateToGame(game.slug)"
             >
             <div v-if="game.badge" class="badge" :class="game.badgeType">{{ game.badge }}</div>
             <img :src="game.image" :alt="game.title" class="game-image" />
@@ -54,13 +52,11 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue'
+  import { onMounted, ref } from 'vue'
   import { useRouter } from 'vue-router'
+    import { fetchGames } from '../services/gameApi'
   
-  // Initialisation du routeur
   const router = useRouter()
-  
-  // Déclaration de tes variables réactives avec ref()
   const categoryTags = ref([
     { id: 1, title: "Réflexion", icon: "🧠", color: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)" },
     { id: 2, title: "Adrénaline", icon: "🏎️", color: "linear-gradient(135deg, #4b134f, #c94b4b)" },
@@ -68,34 +64,44 @@
     { id: 4, title: "Fun 5 minutes", icon: "☕", color: "linear-gradient(135deg, #b79891, #94716b)" },
     { id: 5, title: "Classiques", icon: "🕹️", color: "linear-gradient(135deg, #141e30, #243b55)" }
   ])
-  
-  const topPicks = ref([
-    { id: 1, title: "Bloxd.io", image: "https://placehold.co/600x400/2a2a35/ffffff?text=Bloxd.io", badge: "Top", badgeType: "yellow" },
-    { id: 2, title: "Archer", image: "https://placehold.co/300x200/2a2a35/ffffff?text=Archer" },
-    { id: 3, title: "Moto X3M", image: "https://placehold.co/300x200/2a2a35/ffffff?text=Moto" },
-    { id: 4, title: "Veck.io", image: "https://placehold.co/300x200/2a2a35/ffffff?text=Veck.io" },
-    { id: 5, title: "Color", image: "https://placehold.co/300x200/2a2a35/ffffff?text=Color" }
-  ])
-  
-  const featuredGames = ref([
-    { id: 1, title: "2048", image: "https://placehold.co/300x200/1e1e24/ffffff?text=Clicker", badge: "Updated", badgeType: "blue", namePath: "2048" },
-  ])
-  
-  const newGames = ref([
-    { id: 1, title: "Maze", image: "https://placehold.co/300x200/2b2b36/ffffff?text=Maze" },
-    { id: 2, title: "Room", image: "https://placehold.co/300x200/2b2b36/ffffff?text=Room" },
-    { id: 3, title: "Bot", image: "https://placehold.co/300x200/2b2b36/ffffff?text=Bot" },
-    { id: 4, title: "Racing", image: "https://placehold.co/300x200/2b2b36/ffffff?text=Racing" },
-    { id: 5, title: "Kebab", image: "https://placehold.co/300x200/2b2b36/ffffff?text=Kebab", badge: "Hot", badgeType: "red" },
-    { id: 6, title: "Hoop", image: "https://placehold.co/300x200/2b2b36/ffffff?text=Hoop" }
-  ])
-  
-  // Création d'une fonction propre pour la navigation
-  const naviguerVersJeu = (namePath) => {
-    if (namePath) {
-      router.push({ name: namePath })
+
+  const topPicks = ref([])
+
+  const featuredGames = ref([])
+
+  const newGames = ref([])
+
+  const normalizeGame = (game) => ({
+    id: game.id,
+    title: game.title,
+    slug: game.slug,
+    image: game.image,
+    badge: game.badge,
+    badgeType: game.badgeType,
+    sections: Array.isArray(game.sections) ? game.sections : []
+  })
+
+  const gamesForSection = (games, sectionName) => games.filter((game) => game.sections.includes(sectionName))
+
+  const loadGames = async () => {
+    try {
+      const games = (await fetchGames()).map(normalizeGame)
+
+      topPicks.value = gamesForSection(games, 'top-picks')
+      featuredGames.value = gamesForSection(games, 'featured')
+      newGames.value = gamesForSection(games, 'new')
+    } catch (error) {
+      console.error('Unable to load games from API', error)
     }
   }
+  
+  const navigateToGame = (slug) => {
+    if (slug === '2048') {
+      router.push({ name: '2048' })
+    }
+  }
+
+  onMounted(loadGames)
   </script>
   
   <style scoped>

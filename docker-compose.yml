@@ -9,6 +9,9 @@ services:
       - /app/node_modules # Preserve container's node_modules
     environment:
       - NODE_ENV=development
+      - VITE_API_URL=http://127.0.0.1:5000
+    depends_on:
+      - backend
 
   backend:
     build:
@@ -24,6 +27,9 @@ services:
       - DB_USER=your_user
       - DB_PASSWORD=your_password
       - DB_NAME=your_database
+    depends_on:
+      db:
+        condition: service_healthy
 
   db:
     image: postgres:15  # Use the correct version of PostgreSQL
@@ -33,9 +39,14 @@ services:
       POSTGRES_PASSWORD: your_password
       POSTGRES_DB: your_database
     ports:
-      - "5432:5432"
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U your_user -d your_database"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     volumes:
-      - db_data:/var/lib/postgresql  # Mount at /var/lib/postgresql, not /var/lib/postgresql/data
+      - db_data_v2:/var/lib/postgresql/data
 
 volumes:
-  db_data:
+  db_data_v2:
