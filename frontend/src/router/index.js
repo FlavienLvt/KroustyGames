@@ -1,7 +1,6 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
 import MyGame from '../views/games/2048View.vue' 
-import KroustyClickerView from '../views/games/KroutsyClickerView.vue'
 import HomeView from '../views/HomeView.vue' // On importe la vraie page d'accueil
 
 const routes = [
