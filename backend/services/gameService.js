@@ -55,54 +55,14 @@ const gameSeed = [
     orderIndex: 6
   },
   {
-    title: 'Maze',
-    slug: 'maze',
-    image: 'https://placehold.co/300x200/2b2b36/ffffff?text=Maze',
-    description: 'Sors du labyrinthe sans te perdre.',
-    sections: ['new'],
-    orderIndex: 7
-  },
-  {
-    title: 'Room',
-    slug: 'room',
-    image: 'https://placehold.co/300x200/2b2b36/ffffff?text=Room',
-    description: 'Explore une salle remplie d’indices.',
-    sections: ['new'],
-    orderIndex: 8
-  },
-  {
-    title: 'Bot',
-    slug: 'bot',
-    image: 'https://placehold.co/300x200/2b2b36/ffffff?text=Bot',
-    description: 'Affronte un petit robot dans une partie express.',
-    sections: ['new'],
-    orderIndex: 9
-  },
-  {
-    title: 'Racing',
-    slug: 'racing',
-    image: 'https://placehold.co/300x200/2b2b36/ffffff?text=Racing',
-    description: 'Un jeu de course simple pour des sessions courtes.',
-    sections: ['new'],
-    orderIndex: 10
-  },
-  {
-    title: 'Kebab',
-    slug: 'kebab',
-    image: 'https://placehold.co/300x200/2b2b36/ffffff?text=Kebab',
-    badge: 'Hot',
+    title: 'Krousty Run',
+    slug: 'krousty-run',
+    image: 'https://placehold.co/300x200/1e1e24/ffffff?text=Krousty+Run',
+    badge: 'New',
     badgeType: 'red',
-    description: 'Un jeu léger et rapide au ton plus décalé.',
+    description: 'Un runner infini où il faut esquiver les friteuses et les spatules !',
     sections: ['new'],
-    orderIndex: 11
-  },
-  {
-    title: 'Hoop',
-    slug: 'hoop',
-    image: 'https://placehold.co/300x200/2b2b36/ffffff?text=Hoop',
-    description: 'Marque des points avec un gameplay très direct.',
-    sections: ['new'],
-    orderIndex: 12
+    orderIndex: 0
   }
 ];
 

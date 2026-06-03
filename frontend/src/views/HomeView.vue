@@ -43,7 +43,7 @@
           <a href="#" class="view-more">Voir plus</a>
         </div>
         <div class="standard-grid">
-          <div v-for="game in newGames" :key="game.id" class="game-card">
+          <div v-for="game in newGames" :key="game.id" class="game-card" @click="navigateToGame(game.slug)">
             <img :src="game.image" :alt="game.title" class="game-image" />
           </div>
         </div>
@@ -96,8 +96,10 @@
   }
   
   const navigateToGame = (slug) => {
-    if (slug === '2048') {
-      router.push({ name: '2048' })
+    if (slug === '2048' || slug === 'krousty-run') {
+      router.push({ name: slug })
+    } else {
+      alert("Ce jeu n'est pas encore disponible !")
     }
   }
 
