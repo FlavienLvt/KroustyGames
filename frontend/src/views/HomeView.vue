@@ -7,7 +7,7 @@
         </div>
       </section>
   
-      <section class="game-section">
+      <section v-if="topPicks.length > 0" class="game-section">
         <h2 class="section-title">Sélection pour vous</h2>
         <div class="top-picks-grid">
           <div
@@ -22,7 +22,7 @@
         </div>
       </section>
   
-      <section class="game-section">
+      <section v-if="featuredGames.length > 0" class="game-section">
         <h2 class="section-title">Jeux en vedette</h2>
         <div class="standard-grid">
             <div 
@@ -37,7 +37,7 @@
         </div>
         </section>
       
-      <section class="game-section">
+      <section v-if="newGames.length > 0" class="game-section">
         <div class="section-header">
           <h2 class="section-title">Nouveaux jeux</h2>
           <a href="#" class="view-more">Voir plus</a>
