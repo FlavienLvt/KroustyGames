@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MyGame from '../views/games/2048View.vue' 
 import HomeView from '../views/HomeView.vue' // On importe la vraie page d'accueil
 import KroustyRun from '../views/games/KroustyRunView.vue'
+import FlappyNugget from '../views/games/FlappyNuggetView.vue'
 
 const routes = [
   {
@@ -19,6 +20,11 @@ const routes = [
     path: '/games/krousty-run',
     name: 'krousty-run',
     component: KroustyRun
+  },
+  {
+    path: '/games/flappy-nugget',
+    name: 'flappy-nugget',
+    component: FlappyNugget
   }
 ]
 

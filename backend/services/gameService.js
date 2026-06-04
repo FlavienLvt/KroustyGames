@@ -21,6 +21,16 @@ const gameSeed = [
     description: 'Un runner infini où il faut esquiver les friteuses et les spatules !',
     sections: ['new'],
     orderIndex: 0
+  },
+  {
+    title: 'Flappy Nugget',
+    slug: 'flappy-nugget',
+    image: 'https://placehold.co/300x200/1e1e24/ffffff?text=Flappy+Nugget',
+    badge: 'New',
+    badgeType: 'purple',
+    description: 'Volez à travers les jets de sauce !',
+    sections: ['new', 'featured'],
+    orderIndex: 1
   }
 ];
 

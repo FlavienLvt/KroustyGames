@@ -96,7 +96,7 @@
   }
   
   const navigateToGame = (slug) => {
-    if (slug === '2048' || slug === 'krousty-run') {
+    if (slug === '2048' || slug === 'krousty-run' || slug === 'flappy-nugget') {
       router.push({ name: slug })
     } else {
       alert("Ce jeu n'est pas encore disponible !")
