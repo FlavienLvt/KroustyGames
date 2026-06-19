@@ -7,6 +7,7 @@ const { sequelize } = require('./database');
 const User = require('./models/User');
 const authRoutes = require('./routes/auth');
 const { listGames, getGameBySlug, seedGames } = require('./services/gameService');
+const { seedUsers } = require('./services/userService');
 
 const app = express();
 app.use(cors());
@@ -77,6 +78,7 @@ async function bootstrap() {
     await connectWithRetry();
     await sequelize.sync();
     await seedGames();
+    await seedUsers();
 
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
