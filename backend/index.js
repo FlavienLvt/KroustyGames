@@ -5,8 +5,10 @@ require('dotenv').config();
 
 const { sequelize } = require('./database');
 const User = require('./models/User');
+const gameRoutes = require('./routes/gameRoutes');
 const authRoutes = require('./routes/auth');
-const { listGames, getGameBySlug, seedGames } = require('./services/gameService');
+const { listGames, getGameBySlug } = require('./services/gameService');
+const { seedGames } = require('./seeders/gameSeeders');
 const { seedUsers } = require('./services/userService');
 
 const app = express();
@@ -19,32 +21,6 @@ const DB_RETRY_DELAY_MS = Number(process.env.DB_RETRY_DELAY_MS || 2000);
 
 app.get('/', (req, res) => {
   res.send('Backend is running!');
-});
-
-app.get('/api/games', async (req, res) => {
-  try {
-    const games = await listGames(req.query.section);
-
-    res.json(games);
-  } catch (error) {
-    console.error('Failed to load games:', error);
-    res.status(500).json({ message: 'Impossible de charger les jeux.' });
-  }
-});
-
-app.get('/api/games/:slug', async (req, res) => {
-  try {
-    const game = await getGameBySlug(req.params.slug);
-
-    if (!game) {
-      return res.status(404).json({ message: 'Jeu introuvable.' });
-    }
-
-    res.json(game);
-  } catch (error) {
-    console.error('Failed to load game:', error);
-    res.status(500).json({ message: 'Impossible de charger le jeu.' });
-  }
 });
 
 app.use('/api/auth', authRoutes);

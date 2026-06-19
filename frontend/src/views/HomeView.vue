@@ -85,13 +85,18 @@
 
   const loadGames = async () => {
     try {
-      const games = (await fetchGames()).map(normalizeGame)
+      const [topData, featuredData, newData] = await Promise.all([
+        fetchGames('top-picks'),
+        fetchGames('featured'),
+        fetchGames('new')
+      ]);
 
-      topPicks.value = gamesForSection(games, 'top-picks')
-      featuredGames.value = gamesForSection(games, 'featured')
-      newGames.value = gamesForSection(games, 'new')
+      topPicks.value = topData.map(normalizeGame);
+      featuredGames.value = featuredData.map(normalizeGame);
+      newGames.value = newData.map(normalizeGame);
+      
     } catch (error) {
-      console.error('Unable to load games from API', error)
+      console.error('Unable to load games from API', error);
     }
   }
   
