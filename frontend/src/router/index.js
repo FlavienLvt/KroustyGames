@@ -7,6 +7,11 @@ import RegisterView from '../views/auth/RegisterView.vue'
 import MyGame from '../views/games/2048View.vue' 
 import KroustyRun from '../views/games/KroustyRunView.vue'
 import FlappyNugget from '../views/games/FlappyNuggetView.vue'
+import NouveautesView from '../views/NouveautesView.vue'
+import TendancesView from '../views/TendancesView.vue'
+import CategoryView from '../views/CategoryView.vue'
+import SearchView from '../views/SearchView.vue'
+import NotFoundView from '../views/NotFoundView.vue'
 
 const routes = [
   {
@@ -38,6 +43,32 @@ const routes = [
     path: '/games/flappy-nugget',
     name: 'flappy-nugget',
     component: FlappyNugget
+  },
+  {
+    path: '/nouveautes',
+    name: 'nouveautes',
+    component: NouveautesView
+  },
+  {
+    path: '/tendances',
+    name: 'tendances',
+    component: TendancesView
+  },
+  {
+    path: '/category/:category',
+    name: 'category',
+    component: CategoryView,
+    props: true
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: SearchView
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    component: NotFoundView
   }
 ]
 
@@ -50,9 +81,8 @@ router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
 
   if ((to.name === 'login' || to.name === 'register') && authStore.isAuthenticated) {
-    next({ name: 'home' }) 
-  } 
-  else {
+    next({ name: 'home' })
+  } else {
     next()
   }
 })

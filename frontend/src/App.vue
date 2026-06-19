@@ -11,6 +11,11 @@ function handleLogout() {
   authStore.logout();
   router.push({ name: 'login' });
 }
+
+// Fonction pour naviguer vers une route spécifique
+function navigateTo(routeName, params = {}) {
+  router.push({ name: routeName, ...params });
+}
 </script>
 
 <template>
@@ -27,17 +32,17 @@ function handleLogout() {
             <li @click="navigate" :class="{ active: isActive }"><span class="icon">🏠</span> Accueil</li>
           </router-link>
           <li><span class="icon">🕒</span> Récents</li>
-          <li><span class="icon">✨</span> Nouveautés</li>
-          <li><span class="icon">🔥</span> Tendances</li>
+          <li @click="navigateTo('nouveautes')"><span class="icon">✨</span> Nouveautés</li>
+          <li @click="navigateTo('tendances')"><span class="icon">🔥</span> Tendances</li>
         </ul>
         <div class="divider"></div>
         <h3>Catégories</h3>
         <ul>
-          <li><span class="icon">⚔️</span> Action</li>
-          <li><span class="icon">🗺️</span> Aventure</li>
-          <li><span class="icon">🚗</span> Voiture</li>
-          <li><span class="icon">🧩</span> Puzzle</li>
-          <li><span class="icon">🔫</span> Tir</li>
+          <li @click="navigateTo('category', { params: { category: 'action' } })"><span class="icon">⚔️</span> Action</li>
+          <li @click="navigateTo('category', { params: { category: 'aventure' } })"><span class="icon">🗺️</span> Aventure</li>
+          <li @click="navigateTo('category', { params: { category: 'voiture' } })"><span class="icon">🚗</span> Voiture</li>
+          <li @click="navigateTo('category', { params: { category: 'puzzle' } })"><span class="icon">🧩</span> Puzzle</li>
+          <li @click="navigateTo('category', { params: { category: 'tir' } })"><span class="icon">🔫</span> Tir</li>
         </ul>
       </nav>
     </aside>
@@ -46,29 +51,18 @@ function handleLogout() {
       <header class="topbar">
         <div class="search-container">
           <span class="search-icon">🔍</span>
-          <input type="text" placeholder="Rechercher des jeux..." class="search-bar" />
+          <input
+            type="text"
+            placeholder="Rechercher des jeux..."
+            class="search-bar"
+            @keyup.enter="navigateTo('search', { query: { q: $event.target.value } })"
+          />
         </div>
         
         <div class="user-actions">
-          <button class="icon-btn">🔔</button>
-          <button class="icon-btn">❤️</button>
-          
-          <template v-if="authStore.isAuthenticated">
-            <span class="user-greeting">
-              Salut, <strong>{{ authStore.user?.username }}</strong>
-            </span>
-            <button @click="handleLogout" class="login-btn logout-btn">Déconnexion</button>
-          </template>
-          
-          <template v-else>
-            <router-link :to="{ name: 'login' }">
-              <button class="login-btn outline-btn">Connexion</button>
-            </router-link>
-            <router-link :to="{ name: 'register' }">
-              <button class="login-btn">S'inscrire</button>
-            </router-link>
-          </template>
-          
+          <button class="icon-btn" @click="navigateTo('notifications')">🔔</button>
+          <button class="icon-btn" @click="navigateTo('favorites')">❤️</button>
+          <button class="login-btn" @click="handleLogout">Se déconnecter</button>
         </div>
       </header>
   
