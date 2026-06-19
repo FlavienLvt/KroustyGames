@@ -26,7 +26,9 @@ function handleLogout() {
           <router-link :to="{ name: 'home' }" custom v-slot="{ navigate, isActive }">
             <li @click="navigate" :class="{ active: isActive }"><span class="icon">🏠</span> Accueil</li>
           </router-link>
-          <li><span class="icon">🕒</span> Récents</li>
+          <router-link :to="{ name: 'leaderboard' }" custom v-slot="{ navigate, isActive }">
+            <li @click="navigate" :class="{ active: isActive }"><span class="icon">🏆</span> Classement</li>
+          </router-link>
           <li><span class="icon">✨</span> Nouveautés</li>
           <li><span class="icon">🔥</span> Tendances</li>
         </ul>

@@ -7,6 +7,7 @@ import RegisterView from '../views/auth/RegisterView.vue'
 import MyGame from '../views/games/2048View.vue' 
 import KroustyRun from '../views/games/KroustyRunView.vue'
 import FlappyNugget from '../views/games/FlappyNuggetView.vue'
+import LeaderboardView from '../views/LeaderboardView.vue'
 
 const routes = [
   {
@@ -23,6 +24,11 @@ const routes = [
     path: '/register',
     name: 'register',
     component: RegisterView
+  },
+  {
+    path: '/leaderboard',
+    name: 'leaderboard',
+    component: LeaderboardView
   },
   {
     path: '/games/2048',
