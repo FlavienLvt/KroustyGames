@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const { sequelize } = require('./database');
+const User = require('./models/User');
+const authRoutes = require('./routes/auth');
 const { listGames, getGameBySlug, seedGames } = require('./services/gameService');
 
 const app = express();
@@ -43,6 +45,8 @@ app.get('/api/games/:slug', async (req, res) => {
     res.status(500).json({ message: 'Impossible de charger le jeu.' });
   }
 });
+
+app.use('/api/auth', authRoutes);
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
