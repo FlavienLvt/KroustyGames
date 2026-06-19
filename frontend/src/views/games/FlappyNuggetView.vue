@@ -52,7 +52,15 @@
 </template>
 
 <script>
+import { useScoresStore } from '../../stores/scores';
+
 export default {
+  // 1️⃣ AJOUT : On injecte le store ici
+  setup() {
+    const scoresStore = useScoresStore();
+    return { scoresStore };
+  },
+
   data() {
     return {
       gameStarted: false,
@@ -199,10 +207,23 @@ export default {
         }
       }
     },
-    endGame() {
+    
+    // 2️⃣ AJOUT : On passe en async et on sauvegarde
+    async endGame() {
       this.gameOver = true;
       this.gameStarted = false;
       cancelAnimationFrame(this.animationFrameId);
+
+      const finalScore = Math.floor(this.score);
+      if (finalScore > 0) {
+        try {
+          // On utilise bien le slug 'flappy-nugget' défini dans le router
+          await this.scoresStore.saveScore('flappy-nugget', finalScore);
+          console.log("Score sauvegardé avec succès !");
+        } catch (error) {
+          console.log("Le score n'a pas été sauvegardé (non connecté ou erreur).");
+        }
+      }
     }
   },
   mounted() {

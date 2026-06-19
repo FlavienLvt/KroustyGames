@@ -57,9 +57,15 @@
     </div>
   </div>
 </template>
-
 <script>
+import { useScoresStore } from '../../stores/scores';
+
 export default {
+  setup() {
+    const scoresStore = useScoresStore();
+    return { scoresStore };
+  },
+
   data() {
     return {
       gameStarted: false,
@@ -130,7 +136,7 @@ export default {
         if (!this.player.isJumping) {
           this.isDucking = true;
         } else {
-          // Plongeon rapide si le joueur est en l'air (très utile pour esquiver rapidement)
+          // Plongeon rapide si le joueur est en l'air
           this.player.vy -= 1500;
         }
       }
@@ -186,7 +192,7 @@ export default {
       for (let i = this.obstacles.length - 1; i >= 0; i--) {
         const obs = this.obstacles[i];
         obs.x -= this.gameSpeed * delta;
-        if (obs.x < -100) { // Augmenté pour correspondre à la nouvelle taille
+        if (obs.x < -100) { 
           this.obstacles.splice(i, 1);
         }
       }
@@ -196,14 +202,13 @@ export default {
       this.obstacles.push({
         id: this.obstacleId++,
         type: isFlying ? "spatule" : "friteuse",
-        x: 600, // Apparition juste en dehors du conteneur (600px de large)
-        bottom: isFlying ? 120 : 15, // Spatule plus haute, friteuse au niveau du joueur
+        x: 600, 
+        bottom: isFlying ? 120 : 15, 
         width: 95,
         height: 95
       });
     },
     checkCollisions() {
-      // Hitbox plus petite que les sprites (10px de marge) pour pardonner visuellement
       const pLeft = 50 + 10; 
       const pWidth = this.isDucking ? 90 : 70;
       const pRight = 50 + pWidth - 10;
@@ -221,8 +226,7 @@ export default {
           if (!this.isInvulnerable) {
             this.lives--;
             if (this.lives <= 0) {
-              this.gameOver = true;
-              cancelAnimationFrame(this.animationFrameId);
+              this.endGame();
             } else {
               this.isInvulnerable = true;
               setTimeout(() => {
@@ -230,6 +234,23 @@ export default {
               }, 1500);
             }
           }
+        }
+      }
+    },
+
+    // 3️⃣ AJOUT : La méthode de fin de jeu et sauvegarde
+    async endGame() {
+      this.gameOver = true;
+      this.gameStarted = false;
+      if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
+
+      const finalScore = Math.floor(this.score);
+      if (finalScore > 0) {
+        try {
+          await this.scoresStore.saveScore('krousty-run', finalScore);
+          console.log("Score sauvegardé avec succès !");
+        } catch (error) {
+          console.log("Le score n'a pas été sauvegardé (non connecté ou erreur).");
         }
       }
     }

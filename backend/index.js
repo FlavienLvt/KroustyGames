@@ -8,6 +8,8 @@ const User = require('./models/User');
 const authRoutes = require('./routes/auth');
 const { listGames, getGameBySlug, seedGames } = require('./services/gameService');
 const { seedUsers } = require('./services/userService');
+const scoreRoutes = require('./routes/scores');
+const { seedScores } = require('./services/scoreService');
 
 const app = express();
 app.use(cors());
@@ -48,6 +50,7 @@ app.get('/api/games/:slug', async (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/scores', scoreRoutes);
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -79,6 +82,7 @@ async function bootstrap() {
     await sequelize.sync();
     await seedGames();
     await seedUsers();
+    await seedScores();
 
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);

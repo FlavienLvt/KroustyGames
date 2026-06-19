@@ -48,7 +48,12 @@
   </template>
   
   <script>
+  import { useScoresStore } from '../../stores/scores';
   export default {
+    setup() {
+      const scoresStore = useScoresStore();
+      return { scoresStore };
+    },
     data() {
       return {
         // Structure: { id, value, position, isNew, isMerged, toDelete, nextValue }
@@ -208,7 +213,7 @@
         this.tiles = this.tiles.filter(t => !t.toDelete);
       },
   
-      checkGameState() {
+      async checkGameState() {
         if (this.tiles.some(t => t.value >= 2048)) this.gameWon = true;
         if (this.tiles.length === 16) {
           let canMove = false;
@@ -222,7 +227,18 @@
               if (r < 3 && val === grid[(r + 1) * 4 + c]) canMove = true;
             }
           }
-          if (!canMove) this.gameOver = true;
+          if (!canMove){
+            this.gameOver = true;
+            const finalScore = Math.floor(this.score);
+            if (finalScore > 0) {
+              try {
+                await this.scoresStore.saveScore('2048', finalScore);
+                  console.log("Score sauvegardé avec succès !");
+                } catch (error) {
+                  console.log("Le score n'a pas été sauvegardé (non connecté ou erreur).");
+                }
+            }
+          } 
         }
       }
     },
