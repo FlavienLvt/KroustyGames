@@ -4,10 +4,8 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const { sequelize } = require('./database');
-const User = require('./models/User');
 const gameRoutes = require('./routes/gameRoutes');
 const authRoutes = require('./routes/auth');
-const { listGames, getGameBySlug } = require('./services/gameService');
 const { seedGames } = require('./seeders/gameSeeders');
 const { seedUsers } = require('./services/userService');
 
@@ -24,6 +22,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api', gameRoutes);
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));

@@ -37,11 +37,8 @@
         loading.value = true
         error.value = null
         try {
-          const response = await fetch(`http://localhost:3000/api/games?category=${category}`)
-          if (!response.ok) {
-            throw new Error('Erreur lors de la récupération des jeux.')
-          }
-          const data = await response.json()
+          const { fetchGames } = await import('../services/gameApi')
+          const data = await fetchGames(category)
           games.value = data
         } catch (err) {
           error.value = err.message

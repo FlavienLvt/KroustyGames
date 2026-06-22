@@ -31,7 +31,7 @@ function navigateTo(routeName, params = {}) {
           <router-link :to="{ name: 'home' }" custom v-slot="{ navigate, isActive }">
             <li @click="navigate" :class="{ active: isActive }"><span class="icon">🏠</span> Accueil</li>
           </router-link>
-          <li><span class="icon">🕒</span> Récents</li>
+          <li @click="navigateTo('nouveautes')"><span class="icon">🕒</span> Récents</li>
           <li @click="navigateTo('nouveautes')"><span class="icon">✨</span> Nouveautés</li>
           <li @click="navigateTo('tendances')"><span class="icon">🔥</span> Tendances</li>
         </ul>

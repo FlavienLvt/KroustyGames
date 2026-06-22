@@ -40,7 +40,7 @@
       <section v-if="newGames.length > 0" class="game-section">
         <div class="section-header">
           <h2 class="section-title">Nouveaux jeux</h2>
-          <a href="#" class="view-more">Voir plus</a>
+          <router-link to="/nouveautes" class="view-more">Voir plus</router-link>
         </div>
         <div class="standard-grid">
           <div v-for="game in newGames" :key="game.id" class="game-card" @click="navigateToGame(game.slug)">
