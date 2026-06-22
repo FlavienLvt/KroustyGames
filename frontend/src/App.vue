@@ -39,6 +39,13 @@ function handleLogout() {
               <span class="mr-3 text-xl">🏆</span> Classement
             </li>
           </router-link>
+          <router-link :to="{ name: 'badges' }" custom v-slot="{ navigate, isActive }">
+            <li @click="navigate"
+                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white"
+                :class="{ 'bg-[#232533] text-white font-bold': isActive }">
+              <span class="mr-3 text-xl">🎖️</span> Badges
+            </li>
+          </router-link>
           <li class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white">
             <span class="mr-3 text-xl">✨</span> Nouveautés
           </li>

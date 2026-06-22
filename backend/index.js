@@ -9,11 +9,15 @@ const app = express();
 // ✅ IMPORTER LES SERVICES/ROUTES
 const { sequelize } = require('./database');
 const User = require('./models/User');
+const Badge = require('./models/Badge');
+const UserBadge = require('./models/UserBadge');
 const authRoutes = require('./routes/auth');
 const { listGames, getGameBySlug, seedGames } = require('./services/gameService');
 const { seedUsers } = require('./services/userService');
 const scoreRoutes = require('./routes/scores');
 const { seedScores } = require('./services/scoreService');
+const badgeRoutes = require('./routes/badges');
+const { seedBadges, seedUserBadges } = require('./services/badgeService');
 
 // ✅ CONFIGURER LES MIDDLEWARES
 app.use(cors({
@@ -60,6 +64,7 @@ app.get('/api/games/:slug', async (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/scores', scoreRoutes);
+app.use('/api', badgeRoutes);
 
 // ✅ FONCTIONS UTILITAIRES
 function sleep(ms) {
@@ -90,6 +95,8 @@ async function bootstrap() {
     await seedGames();
     await seedUsers();
     await seedScores();
+    await seedBadges();
+    await seedUserBadges();
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });

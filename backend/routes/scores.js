@@ -3,6 +3,7 @@ const express = require('express');
 const Score = require('../models/Score');
 const User = require('../models/User');
 const authMiddleware = require('../middleware/authMiddleware');
+const { checkAndAwardBadges } = require('../services/badgeService');
 
 const router = express.Router();
 
@@ -13,6 +14,7 @@ router.post('/', authMiddleware, async (req, res) => {
     const userId = req.user.userId; // Récupéré grâce au middleware
 
     const newScore = await Score.create({ score, gameSlug, userId });
+    await checkAndAwardBadges(userId);
     res.status(201).json(newScore);
   } catch (error) {
     console.error('Erreur save score:', error);

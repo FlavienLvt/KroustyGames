@@ -8,6 +8,7 @@ import MyGame from '../views/games/2048View.vue'
 import KroustyRun from '../views/games/KroustyRunView.vue'
 import FlappyNugget from '../views/games/FlappyNuggetView.vue'
 import LeaderboardView from '../views/LeaderboardView.vue'
+import BadgesView from '../views/BadgesView.vue'
 
 const routes = [
   {
@@ -29,6 +30,11 @@ const routes = [
     path: '/leaderboard',
     name: 'leaderboard',
     component: LeaderboardView
+  },
+  {
+    path: '/badges',
+    name: 'badges',
+    component: BadgesView
   },
   {
     path: '/games/2048',

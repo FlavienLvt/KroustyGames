@@ -3,6 +3,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const { checkAndAwardBadges } = require('../services/badgeService');
 
 const router = express.Router();
 
@@ -30,6 +31,7 @@ router.post('/register', async (req, res) => {
       password: hashedPassword
     });
 
+    await checkAndAwardBadges(newUser.id);
     res.status(201).json({ message: 'Compte créé avec succès !' });
   } catch (error) {
     console.error('Erreur register:', error);
