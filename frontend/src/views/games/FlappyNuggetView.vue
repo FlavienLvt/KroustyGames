@@ -1,51 +1,74 @@
 <template>
-  <div class="game-wrapper">
-    <div class="game-header">
-      <div class="titles">
-        <h1>Flappy Nugget</h1>
-        <p>Cliquez ou appuyez sur Espace pour faire voler le nugget !</p>
+  <div class="flex flex-col items-center text-white p-5">
+    <!-- Header -->
+    <div class="flex justify-between items-center w-full max-w-[400px] mb-5 gap-5">
+      <div class="flex-1">
+        <h1 class="text-[2.5rem] font-extrabold m-0 text-[#8c52ff] tracking-[-1px]">Flappy Nugget</h1>
+        <p class="m-0 text-[#63667c] text-[0.9rem] leading-[1.4]">Cliquez ou appuyez sur Espace pour faire voler le nugget !</p>
       </div>
-      <div class="score-board">
-        <div class="score-box">
-          <span>SCORE</span>
-          <strong>{{ score }}</strong>
-        </div>
+      <div class="bg-[#232533] px-5 py-2.5 rounded-xl text-center shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
+        <span class="block text-[0.75rem] text-[#8c52ff] font-bold">SCORE</span>
+        <strong class="text-[1.5rem] font-bold">{{ score }}</strong>
       </div>
     </div>
 
-    <div class="game-container" ref="gameContainer" @click="flap">
-      <div v-if="gameOver" class="game-overlay">
-        <h2>Game Over 💀</h2>
-        <p>Score final : {{ score }}</p>
-        <button class="primary-btn" @click="startGame">Rejouer</button>
-      </div>
-      <div v-if="!gameStarted && !gameOver" class="game-overlay">
-        <h2>Prêt à voler ?</h2>
-        <button class="primary-btn" @click="startGame">Jouer</button>
+    <!-- Game container -->
+    <div
+      class="relative bg-[#70c5ce] rounded-[15px] shadow-[0_10px_30px_rgba(0,0,0,0.3)] w-[400px] h-[600px] overflow-hidden cursor-pointer"
+      ref="gameContainer"
+      @click="flap"
+    >
+      <!-- Game over overlay -->
+      <div v-if="gameOver" class="absolute inset-0 bg-[rgba(15,16,22,0.7)] flex flex-col justify-center items-center rounded-[15px] z-20 backdrop-blur-sm text-center">
+        <h2 class="text-[2.5rem] mb-2.5 text-white">Game Over 💀</h2>
+        <p class="text-[1.2rem] text-[#ccc] mb-5">Score final : {{ score }}</p>
+        <button
+          class="font-bold border-none rounded-full cursor-pointer bg-[#8c52ff] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
+          @click="startGame"
+        >
+          Rejouer
+        </button>
       </div>
 
-      <div class="game-area">
-        <div class="player" :style="{ transform: `translateY(${player.y}px) rotate(${player.vy * 0.1}deg)` }">
-          <img src="../../assets/img/flappy.png" alt="Flappy Nugget" class="nugget-img">
+      <!-- Start overlay -->
+      <div v-if="!gameStarted && !gameOver" class="absolute inset-0 bg-[rgba(15,16,22,0.7)] flex flex-col justify-center items-center rounded-[15px] z-20 backdrop-blur-sm text-center">
+        <h2 class="text-[2.5rem] mb-2.5 text-white">Prêt à voler ?</h2>
+        <button
+          class="font-bold border-none rounded-full cursor-pointer bg-[#8c52ff] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
+          @click="startGame"
+        >
+          Jouer
+        </button>
+      </div>
+
+      <div class="relative w-full h-full">
+        <!-- Player -->
+        <div
+          class="absolute left-[50px] top-0 w-[50px] h-[50px] -ml-[25px] -mt-[25px] z-10 transition-transform duration-100 ease-linear"
+          :style="{ transform: `translateY(${player.y}px) rotate(${player.vy * 0.1}deg)` }"
+        >
+          <img src="../../assets/img/flappy.png" alt="Flappy Nugget" class="w-full h-full object-contain drop-shadow-[2px_2px_2px_rgba(0,0,0,0.3)]" />
         </div>
 
+        <!-- Pipes -->
         <div
           v-for="pipe in pipes"
           :key="pipe.id"
-          class="pipe-pair"
+          class="absolute top-0 bottom-0 w-[80px] z-[1]"
           :style="{ left: pipe.x + 'px' }"
         >
-          <div class="pipe pipe-top" :style="{ height: pipe.topHeight + 'px' }">
-            <img src="../../assets/img/mayo_down.png" alt="Top Pipe" class="pipe-img">
+          <div class="absolute top-0 left-0 w-full" :style="{ height: pipe.topHeight + 'px' }">
+            <img src="../../assets/img/mayo_down.png" alt="Top Pipe" class="w-full h-full object-fill" />
           </div>
-          <div class="pipe pipe-bottom" :style="{ height: pipe.bottomHeight + 'px' }">
-            <img src="../../assets/img/mayo_up.png" alt="Bottom Pipe" class="pipe-img">
+          <div class="absolute bottom-0 left-0 w-full" :style="{ height: pipe.bottomHeight + 'px' }">
+            <img src="../../assets/img/mayo_up.png" alt="Bottom Pipe" class="w-full h-full object-fill" />
           </div>
         </div>
       </div>
     </div>
 
-    <div class="controls-hint">
+    <!-- Controls hint -->
+    <div class="mt-5 text-center text-[#63667c] text-[0.9rem]">
       <p>🎮 <strong>Espace / Clic</strong> pour voler.</p>
     </div>
   </div>
@@ -55,33 +78,26 @@
 import { useScoresStore } from '../../stores/scores';
 
 export default {
-  // 1️⃣ AJOUT : On injecte le store ici
   setup() {
     const scoresStore = useScoresStore();
     return { scoresStore };
   },
-
   data() {
     return {
       gameStarted: false,
       gameOver: false,
       score: 0,
       lastTime: 0,
-      gameSpeed: 150, // pixels par seconde
-      player: {
-        y: 300, // Position de départ au milieu (600 / 2)
-        vy: 0,
-        gravity: 800,
-        flapPower: 300,
-      },
+      gameSpeed: 150,
+      player: { y: 300, vy: 0, gravity: 800, flapPower: 300 },
       pipes: [],
       pipeGap: 160,
       pipeWidth: 80,
       pipeSpawnTimer: 0,
-      pipeSpawnInterval: 2, // secondes
+      pipeSpawnInterval: 2,
       nextPipeId: 0,
       animationFrameId: null,
-      containerHeight: 600, // Hauteur fixe basée sur le CSS
+      containerHeight: 600,
     };
   },
   methods: {
@@ -94,7 +110,6 @@ export default {
     resetGame() {
       this.gameOver = false;
       this.score = 0;
-      // On replace le joueur au centre
       this.player.y = this.containerHeight / 2;
       this.player.vy = 0;
       this.pipes = [];
@@ -103,15 +118,11 @@ export default {
       if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
     },
     handleKeydown(e) {
-      if (e.key === " " || e.key === "Space") {
+      if (e.key === ' ' || e.key === 'Space') {
         e.preventDefault();
-        if (!this.gameStarted) {
-          this.startGame();
-        } else if (!this.gameOver) {
-          this.flap();
-        } else {
-          this.startGame();
-        }
+        if (!this.gameStarted)     this.startGame();
+        else if (!this.gameOver)   this.flap();
+        else                       this.startGame();
       }
     },
     flap() {
@@ -120,27 +131,17 @@ export default {
     },
     gameLoop(time) {
       if (this.gameOver) return;
-
       const delta = (time - this.lastTime) / 1000;
       this.lastTime = time;
-
-      // Évite que le jeu s'emballe si on change d'onglet
-      if (delta > 0.1) {
-        this.animationFrameId = requestAnimationFrame(this.gameLoop);
-        return;
-      }
-
+      if (delta > 0.1) { this.animationFrameId = requestAnimationFrame(this.gameLoop); return; }
       this.updatePlayer(delta);
       this.updatePipes(delta);
       this.checkCollisions();
-
-      if (!this.gameOver) {
-        this.animationFrameId = requestAnimationFrame(this.gameLoop);
-      }
+      if (!this.gameOver) this.animationFrameId = requestAnimationFrame(this.gameLoop);
     },
     updatePlayer(delta) {
       this.player.vy += this.player.gravity * delta;
-      this.player.y += this.player.vy * delta;
+      this.player.y  += this.player.vy * delta;
     },
     updatePipes(delta) {
       this.pipeSpawnTimer += delta;
@@ -148,132 +149,61 @@ export default {
         this.pipeSpawnTimer = 0;
         this.spawnPipe();
       }
-
       for (let i = this.pipes.length - 1; i >= 0; i--) {
         const pipe = this.pipes[i];
         pipe.x -= this.gameSpeed * delta;
-
-        // Le joueur est à x = 50. On gagne un point quand le tuyau le dépasse
-        if (!pipe.passed && pipe.x < 50 - this.pipeWidth) {
-          pipe.passed = true;
-          this.score++;
-        }
-
-        if (pipe.x < -this.pipeWidth) {
-          this.pipes.splice(i, 1);
-        }
+        if (!pipe.passed && pipe.x < 50 - this.pipeWidth) { pipe.passed = true; this.score++; }
+        if (pipe.x < -this.pipeWidth) this.pipes.splice(i, 1);
       }
     },
     spawnPipe() {
       const minHeight = 40;
-      const maxPipeHeight = this.containerHeight - this.pipeGap - minHeight * 2;
-      const topHeight = Math.random() * maxPipeHeight + minHeight;
-      const bottomHeight = this.containerHeight - topHeight - this.pipeGap;
-
+      const topHeight = Math.random() * (this.containerHeight - this.pipeGap - minHeight * 2) + minHeight;
       this.pipes.push({
         id: this.nextPipeId++,
         x: this.$refs.gameContainer.clientWidth,
         topHeight,
-        bottomHeight,
+        bottomHeight: this.containerHeight - topHeight - this.pipeGap,
         passed: false,
       });
     },
     checkCollisions() {
-      const playerSize = 30; // Hitbox un peu plus petite que l'image pour être juste
-      const playerLeft = 50 - playerSize / 2;
-      const playerRight = 50 + playerSize / 2;
-      const playerTop = this.player.y - playerSize / 2;
-      const playerBottom = this.player.y + playerSize / 2;
-
-      // Limites de l'écran (sol et plafond)
-      if (playerBottom > this.containerHeight || playerTop < 0) {
-        this.endGame();
-        return;
-      }
-
+      const size = 30;
+      const pLeft   = 50 - size / 2, pRight  = 50 + size / 2;
+      const pTop    = this.player.y - size / 2, pBottom = this.player.y + size / 2;
+      if (pBottom > this.containerHeight || pTop < 0) { this.endGame(); return; }
       for (const pipe of this.pipes) {
-        const pipeLeft = pipe.x;
-        const pipeRight = pipe.x + this.pipeWidth;
-        const topPipeBottom = pipe.topHeight;
-        const bottomPipeTop = this.containerHeight - pipe.bottomHeight;
-
-        // Si on est aligné horizontalement avec le tuyau
-        if (playerRight > pipeLeft && playerLeft < pipeRight) {
-          // Si on touche le tuyau du haut OU du bas
-          if (playerTop < topPipeBottom || playerBottom > bottomPipeTop) {
-            this.endGame();
-            return;
+        const pipeRight  = pipe.x + this.pipeWidth;
+        if (pRight > pipe.x && pLeft < pipeRight) {
+          if (pTop < pipe.topHeight || pBottom > this.containerHeight - pipe.bottomHeight) {
+            this.endGame(); return;
           }
         }
       }
     },
-    
-    // 2️⃣ AJOUT : On passe en async et on sauvegarde
     async endGame() {
       this.gameOver = true;
       this.gameStarted = false;
       cancelAnimationFrame(this.animationFrameId);
-
       const finalScore = Math.floor(this.score);
       if (finalScore > 0) {
         try {
-          // On utilise bien le slug 'flappy-nugget' défini dans le router
           await this.scoresStore.saveScore('flappy-nugget', finalScore);
-          console.log("Score sauvegardé avec succès !");
-        } catch (error) {
+          console.log('Score sauvegardé avec succès !');
+        } catch {
           console.log("Le score n'a pas été sauvegardé (non connecté ou erreur).");
         }
       }
-    }
+    },
   },
   mounted() {
     this.containerHeight = this.$refs.gameContainer.clientHeight;
     this.resetGame();
-    window.addEventListener("keydown", this.handleKeydown);
+    window.addEventListener('keydown', this.handleKeydown);
   },
   beforeUnmount() {
-    window.removeEventListener("keydown", this.handleKeydown);
-    if (this.animationFrameId) {
-      cancelAnimationFrame(this.animationFrameId);
-    }
+    window.removeEventListener('keydown', this.handleKeydown);
+    if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
   },
 };
 </script>
-
-<style scoped>
-.game-wrapper { display: flex; flex-direction: column; align-items: center; font-family: 'Poppins', sans-serif; color: #ffffff; padding: 20px; }
-.game-header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 400px; margin-bottom: 20px; gap: 20px; }
-.titles { flex: 1; }
-.titles h1 { font-size: 2.5rem; font-weight: 800; margin: 0; color: #8c52ff; letter-spacing: -1px; }
-.titles p { margin: 0; color: #63667c; font-size: 0.9rem; line-height: 1.4; }
-.score-box { background-color: #232533; padding: 10px 20px; border-radius: 12px; text-align: center; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
-.score-box span { display: block; font-size: 0.75rem; color: #8c52ff; font-weight: bold; }
-.score-box strong { font-size: 1.5rem; font-weight: 700; }
-.game-container { position: relative; background-color: #70c5ce; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); width: 400px; height: 600px; overflow: hidden; cursor: pointer; }
-
-/* Correction du point d'origine du jeu (retrait de translateY) */
-.game-area { position: relative; width: 100%; height: 100%; }
-
-.player { position: absolute; left: 50px; top: 0; width: 50px; height: 50px; margin-left: -25px; margin-top: -25px; z-index: 10; transition: transform 0.1s linear; }
-.nugget-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.3));
-}
-.pipe-pair { position: absolute; top: 0; bottom: 0; width: 80px; z-index: 1; }
-.pipe { position: absolute; left: 0; width: 100%; }
-.pipe-top { top: 0; }
-.pipe-bottom { bottom: 0; }
-.pipe-img {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-}
-.game-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 16, 22, 0.7); display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 15px; z-index: 20; backdrop-filter: blur(3px); text-align: center; }
-.game-overlay h2 { font-size: 2.5rem; margin-bottom: 10px; color: #fff; }
-.game-overlay p { font-size: 1.2rem; color: #ccc; margin-bottom: 20px; }
-.controls-hint { margin-top: 20px; text-align: center; color: #63667c; font-size: 0.9rem; }
-.primary-btn { font-family: 'Poppins', sans-serif; font-weight: 700; border: none; border-radius: 20px; cursor: pointer; background-color: #8c52ff; color: white; padding: 12px 30px; font-size: 1.1rem; transition: transform 0.2s; }
-.primary-btn:hover { transform: scale(1.05); }
-</style>

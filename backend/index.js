@@ -3,6 +3,10 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
+// ✅ CRÉER L'APP IMMÉDIATEMENT
+const app = express();
+
+// ✅ IMPORTER LES SERVICES/ROUTES
 const { sequelize } = require('./database');
 const User = require('./models/User');
 const authRoutes = require('./routes/auth');
@@ -11,14 +15,22 @@ const { seedUsers } = require('./services/userService');
 const scoreRoutes = require('./routes/scores');
 const { seedScores } = require('./services/scoreService');
 
-const app = express();
-app.use(cors());
+// ✅ CONFIGURER LES MIDDLEWARES
+app.use(cors({
+  origin: ['http://localhost:8080', 'http://127.0.0.1:8080', 'http://frontend:8080'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(bodyParser.json());
 
+// ✅ VARIABLES
 const PORT = process.env.PORT || 5000;
 const DB_MAX_RETRIES = Number(process.env.DB_MAX_RETRIES || 20);
 const DB_RETRY_DELAY_MS = Number(process.env.DB_RETRY_DELAY_MS || 2000);
 
+// ✅ ROUTES
 app.get('/', (req, res) => {
   res.send('Backend is running!');
 });
@@ -26,7 +38,6 @@ app.get('/', (req, res) => {
 app.get('/api/games', async (req, res) => {
   try {
     const games = await listGames(req.query.section);
-
     res.json(games);
   } catch (error) {
     console.error('Failed to load games:', error);
@@ -37,11 +48,9 @@ app.get('/api/games', async (req, res) => {
 app.get('/api/games/:slug', async (req, res) => {
   try {
     const game = await getGameBySlug(req.params.slug);
-
     if (!game) {
       return res.status(404).json({ message: 'Jeu introuvable.' });
     }
-
     res.json(game);
   } catch (error) {
     console.error('Failed to load game:', error);
@@ -52,13 +61,13 @@ app.get('/api/games/:slug', async (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/scores', scoreRoutes);
 
+// ✅ FONCTIONS UTILITAIRES
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function connectWithRetry() {
   let attempt = 0;
-
   while (attempt < DB_MAX_RETRIES) {
     try {
       await sequelize.authenticate();
@@ -66,11 +75,9 @@ async function connectWithRetry() {
     } catch (error) {
       attempt += 1;
       console.error(`Database connection failed (${attempt}/${DB_MAX_RETRIES})`);
-
       if (attempt >= DB_MAX_RETRIES) {
         throw error;
       }
-
       await sleep(DB_RETRY_DELAY_MS);
     }
   }
@@ -83,7 +90,6 @@ async function bootstrap() {
     await seedGames();
     await seedUsers();
     await seedScores();
-
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
