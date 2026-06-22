@@ -8,9 +8,9 @@ const app = express();
 
 // ✅ IMPORTER LES SERVICES/ROUTES
 const { sequelize } = require('./database');
-const User = require('./models/User');
+const gameRoutes = require('./routes/gameRoutes');
 const authRoutes = require('./routes/auth');
-const { listGames, getGameBySlug, seedGames } = require('./services/gameService');
+const { seedGames } = require('./seeders/gameSeeders');
 const { seedUsers } = require('./services/userService');
 const scoreRoutes = require('./routes/scores');
 const { seedScores } = require('./services/scoreService');

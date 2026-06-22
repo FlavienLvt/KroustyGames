@@ -9,6 +9,14 @@ function handleLogout() {
   authStore.logout();
   router.push({ name: 'login' });
 }
+
+const categories = [
+  { slug: 'action',   icon: '⚔️',  label: 'Action'   },
+  { slug: 'aventure', icon: '🗺️', label: 'Aventure'  },
+  { slug: 'voiture',  icon: '🚗',  label: 'Voiture'   },
+  { slug: 'puzzle',   icon: '🧩',  label: 'Puzzle'    },
+  { slug: 'tir',      icon: '🔫',  label: 'Tir'       },
+]
 </script>
 
 <template>
@@ -32,40 +40,33 @@ function handleLogout() {
               <span class="mr-3 text-xl">🏠</span> Accueil
             </li>
           </router-link>
-          <router-link :to="{ name: 'leaderboard' }" custom v-slot="{ navigate, isActive }">
+          <router-link :to="{ name: 'nouveautes' }" custom v-slot="{ navigate, isActive }">
             <li @click="navigate"
                 class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white"
                 :class="{ 'bg-[#232533] text-white font-bold': isActive }">
-              <span class="mr-3 text-xl">🏆</span> Classement
+              <span class="mr-3 text-xl">✨</span> Nouveautés
             </li>
           </router-link>
-          <li class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white">
-            <span class="mr-3 text-xl">✨</span> Nouveautés
-          </li>
-          <li class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white">
-            <span class="mr-3 text-xl">🔥</span> Tendances
-          </li>
+          <router-link :to="{ name: 'tendances' }" custom v-slot="{ navigate, isActive }">
+            <li @click="navigate"
+                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white"
+                :class="{ 'bg-[#232533] text-white font-bold': isActive }">
+              <span class="mr-3 text-xl">🔥</span> Tendances
+            </li>
+          </router-link>
         </ul>
 
         <div class="h-px bg-[#2a2c3f] mx-2.5 my-5"></div>
         <h3 class="text-[0.8rem] uppercase text-[#63667c] mb-2.5 ml-4 tracking-[0.05em]">Catégories</h3>
 
         <ul class="list-none p-0 m-0">
-          <li class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white">
-            <span class="mr-3 text-xl">⚔️</span> Action
-          </li>
-          <li class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white">
-            <span class="mr-3 text-xl">🗺️</span> Aventure
-          </li>
-          <li class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white">
-            <span class="mr-3 text-xl">🚗</span> Voiture
-          </li>
-          <li class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white">
-            <span class="mr-3 text-xl">🧩</span> Puzzle
-          </li>
-          <li class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white">
-            <span class="mr-3 text-xl">🔫</span> Tir
-          </li>
+          <router-link v-for="cat in categories" :key="cat.slug" :to="{ name: 'category', params: { category: cat.slug } }" custom v-slot="{ navigate, isActive }">
+            <li @click="navigate"
+                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white"
+                :class="{ 'bg-[#232533] text-white font-bold': isActive }">
+              <span class="mr-3 text-xl">{{ cat.icon }}</span> {{ cat.label }}
+            </li>
+          </router-link>
         </ul>
       </nav>
     </aside>
