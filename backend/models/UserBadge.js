@@ -21,6 +21,7 @@ const UserBadge = sequelize.define('UserBadge', {
     defaultValue: DataTypes.NOW
   }
 }, {
+  tableName: 'user_badges',
   indexes: [
     { unique: true, fields: ['userId', 'badgeKey'] }
   ]

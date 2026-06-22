@@ -31,6 +31,8 @@ const Badge = sequelize.define('Badge', {
     type: DataTypes.INTEGER,
     allowNull: true
   }
+}, {
+  tableName: 'badges'
 });
 
 module.exports = Badge;

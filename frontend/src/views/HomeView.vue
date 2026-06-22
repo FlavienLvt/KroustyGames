@@ -121,9 +121,9 @@
           <span class="block w-[3px] h-5 bg-[#ff6b35] rounded-full"></span>
           <h2 class="text-xs font-bold tracking-[0.15em] uppercase text-[#8c7aaa] m-0">Nouveaux jeux</h2>
         </div>
-        <a href="#" class="text-[#8c52ff] text-sm font-medium no-underline hover:text-[#b07fff] transition-colors duration-200">
+        <router-link to="/nouveautes" class="text-[#8c52ff] text-sm font-medium no-underline hover:text-[#b07fff] transition-colors duration-200">
           Voir tous →
-        </a>
+        </router-link>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
         <div
