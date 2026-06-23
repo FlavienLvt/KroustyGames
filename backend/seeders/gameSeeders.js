@@ -4,7 +4,7 @@ const gameSeed = [
   {
     title: '2048',
     slug: '2048',
-    image: 'https://placehold.co/300x200/1e1e24/ffffff?text=2048',
+    image: '/thumbnails/thumbnail-2048.svg',
     badge: 'Updated',
     badgeType: 'blue',
     description: 'Rejoins les nombres jusqu’à atteindre la tuile 2048.',
@@ -14,7 +14,7 @@ const gameSeed = [
   {
     title: 'Krousty Run',
     slug: 'krousty-run',
-    image: 'https://placehold.co/300x200/1e1e24/ffffff?text=Krousty+Run',
+    image: '/thumbnails/thumbnail-krousty-run.svg',
     badge: 'New',
     badgeType: 'red',
     description: 'Un runner infini où il faut esquiver les friteuses et les spatules !',
@@ -24,7 +24,7 @@ const gameSeed = [
   {
     title: 'Flappy Nugget',
     slug: 'flappy-nugget',
-    image: 'https://placehold.co/300x200/1e1e24/ffffff?text=Flappy+Nugget',
+    image: '/thumbnails/thumbnail-flappy-nugget.svg',
     badge: 'New',
     badgeType: 'purple',
     description: 'Volez à travers les jets de sauce !',
@@ -34,7 +34,7 @@ const gameSeed = [
   {
     title: 'Frite Fighter',
     slug: 'frite-fighter',
-    image: 'https://placehold.co/300x200/1e1e24/ffffff?text=Frite+Fighter',
+    image: '/thumbnails/thumbnail-frite-fighter.svg',
     badge: 'New',
     badgeType: 'red',
     description: "Écrase les nuggets avant qu'ils s'échappent de la friteuse !",
@@ -44,7 +44,7 @@ const gameSeed = [
   {
     title: 'Ketchup Defender',
     slug: 'ketchup-defender',
-    image: 'https://placehold.co/300x200/1e1e24/ffffff?text=Ketchup+Defender',
+    image: '/thumbnails/thumbnail-ketchup-defender.svg',
     badge: 'New',
     badgeType: 'red',
     description: 'Défends la cuisine contre les vagues de nuggets et de frites !',
@@ -86,9 +86,9 @@ const gameSeed = [
 async function seedGames() {
   try {
     for (const game of gameSeed) {
-      await Game.findOrCreate({ where: { slug: game.slug }, defaults: game });
+      await Game.upsert(game);
     }
-    console.log('Jeux initialisés avec succès.');
+    console.log('Jeux initialisés/mis à jour avec succès.');
   } catch (error) {
     console.error('Erreur lors du seeding des jeux:', error);
   }

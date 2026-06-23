@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d4e8ff"/>
+      <stop offset="70%" stop-color="#f5e6c8"/>
+      <stop offset="100%" stop-color="#e8d5a3"/>
+    </linearGradient>
+    <linearGradient id="overlay" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0%" stop-color="#0d0e17" stop-opacity="0"/>
+      <stop offset="60%" stop-color="#0d0e17" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#0d0e17" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="ground-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8b6914"/>
+      <stop offset="100%" stop-color="#5a4209"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky background -->
+  <rect width="300" height="200" fill="url(#sky)"/>
+
+  <!-- Kitchen wall tiles (background detail) -->
+  <rect x="0" y="0" width="300" height="120" fill="none" stroke="#c8b99a" stroke-width="0.5" opacity="0.4"/>
+  <line x1="0" y1="40" x2="300" y2="40" stroke="#c8b99a" stroke-width="0.5" opacity="0.4"/>
+  <line x1="0" y1="80" x2="300" y2="80" stroke="#c8b99a" stroke-width="0.5" opacity="0.4"/>
+  <line x1="60" y1="0" x2="60" y2="120" stroke="#c8b99a" stroke-width="0.5" opacity="0.4"/>
+  <line x1="120" y1="0" x2="120" y2="120" stroke="#c8b99a" stroke-width="0.5" opacity="0.4"/>
+  <line x1="180" y1="0" x2="180" y2="120" stroke="#c8b99a" stroke-width="0.5" opacity="0.4"/>
+  <line x1="240" y1="0" x2="240" y2="120" stroke="#c8b99a" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Ground -->
+  <rect x="0" y="130" width="300" height="30" fill="url(#ground-grad)"/>
+  <rect x="0" y="126" width="300" height="6" fill="#3d2c05"/>
+
+  <!-- Floor -->
+  <rect x="0" y="160" width="300" height="40" fill="#2a1d04"/>
+
+  <!-- Speed lines (motion blur feel) -->
+  <line x1="20" y1="100" x2="80" y2="100" stroke="#fff" stroke-width="1.5" opacity="0.3"/>
+  <line x1="10" y1="110" x2="65" y2="110" stroke="#fff" stroke-width="1" opacity="0.2"/>
+  <line x1="5"  y1="90"  x2="55" y2="90"  stroke="#fff" stroke-width="1" opacity="0.15"/>
+
+  <!-- Friteuse obstacle (on ground) -->
+  <rect x="220" y="88" width="52" height="44" rx="4" fill="#f5c020"/>
+  <rect x="224" y="92" width="44" height="36" rx="3" fill="#e0a800"/>
+  <rect x="228" y="96" width="36" height="24" rx="2" fill="#1a1400" opacity="0.7"/>
+  <!-- frying oil bubbles -->
+  <circle cx="238" cy="104" r="3" fill="#f5c020" opacity="0.9"/>
+  <circle cx="250" cy="110" r="2.5" fill="#f5c020" opacity="0.8"/>
+  <circle cx="258" cy="103" r="2" fill="#f5c020" opacity="0.7"/>
+  <!-- handle -->
+  <rect x="268" y="100" width="10" height="5" rx="2" fill="#888"/>
+
+  <!-- Chicken (simple running silhouette) -->
+  <!-- body -->
+  <ellipse cx="140" cy="103" rx="26" ry="20" fill="#f5c842"/>
+  <!-- head -->
+  <circle cx="163" cy="88" r="15" fill="#f5c842"/>
+  <!-- eye -->
+  <circle cx="168" cy="85" r="3" fill="#1a1a1a"/>
+  <circle cx="169" cy="84" r="1" fill="#fff"/>
+  <!-- beak -->
+  <polygon points="175,88 182,91 175,93" fill="#ff8c00"/>
+  <!-- wing -->
+  <ellipse cx="138" cy="100" rx="14" ry="10" fill="#e8b020" transform="rotate(-15 138 100)"/>
+  <!-- legs (running pose) -->
+  <line x1="145" y1="120" x2="132" y2="140" stroke="#ff8c00" stroke-width="4" stroke-linecap="round"/>
+  <line x1="132" y1="140" x2="122" y2="140" stroke="#ff8c00" stroke-width="3" stroke-linecap="round"/>
+  <line x1="155" y1="120" x2="165" y2="135" stroke="#ff8c00" stroke-width="4" stroke-linecap="round"/>
+  <line x1="165" y1="135" x2="175" y2="130" stroke="#ff8c00" stroke-width="3" stroke-linecap="round"/>
+  <!-- crest -->
+  <ellipse cx="160" cy="74" rx="5" ry="8" fill="#e63946" transform="rotate(-10 160 74)"/>
+
+  <!-- Dark overlay (left side for text) -->
+  <rect x="0" y="0" width="300" height="200" fill="url(#overlay)"/>
+
+  <!-- Bottom label -->
+  <rect x="0" y="162" width="300" height="38" fill="#0d0e17" opacity="0.92"/>
+  <rect x="0" y="162" width="300" height="1" fill="#2a2c3f"/>
+  <text x="150" y="187" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c52ff" text-anchor="middle" letter-spacing="2">KROUSTY RUN</text>
+</svg>
