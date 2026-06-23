@@ -16,6 +16,9 @@ import SearchView from '../views/SearchView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 import LeaderboardView from '../views/LeaderboardView.vue'
 import BadgesView from '../views/BadgesView.vue'
+import KroustyCrushView from '../views/games/KroustyCrushView.vue'
+import KroustySurvivorsView from '../views/games/KroustySurvivorsView.vue'
+import AngryNuggetsView from '../views/games/AngryNuggetsView.vue'
 
 const routes = [
   { path: '/',            name: 'home',         component: HomeView        },
@@ -23,11 +26,20 @@ const routes = [
   { path: '/register',    name: 'register',     component: RegisterView    },
   { path: '/leaderboard', name: 'leaderboard',  component: LeaderboardView },
   { path: '/badges',      name: 'badges',       component: BadgesView      },
+<<<<<<< HEAD
   { path: '/games/2048',          name: '2048',          component: MyGame       },
   { path: '/games/krousty-run',   name: 'krousty-run',   component: KroustyRun  },
   { path: '/games/flappy-nugget', name: 'flappy-nugget', component: FlappyNugget },
   { path: '/games/frite-fighter',    name: 'frite-fighter',    component: FriteFighter    },
   { path: '/games/ketchup-defender', name: 'ketchup-defender', component: KetchupDefender },
+=======
+  { path: '/games/2048',             name: '2048',              component: MyGame           },
+  { path: '/games/krousty-run',     name: 'krousty-run',     component: KroustyRun      },
+  { path: '/games/flappy-nugget',   name: 'flappy-nugget',   component: FlappyNugget    },
+  { path: '/games/krousty-crush',   name: 'krousty-crush',   component: KroustyCrushView    },
+  { path: '/games/krousty-survivors', name: 'krousty-survivors', component: KroustySurvivorsView },
+  { path: '/games/angry-nuggets',   name: 'angry-nuggets',   component: AngryNuggetsView    },
+>>>>>>> moreGames
   { path: '/nouveautes',          name: 'nouveautes',    component: NouveautesView },
   { path: '/tendances',           name: 'tendances',     component: TendancesView  },
   { path: '/category/:category',  name: 'category',      component: CategoryView, props: true },
