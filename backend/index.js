@@ -12,6 +12,7 @@ const gameRoutes  = require('./routes/gameRoutes');
 const authRoutes  = require('./routes/auth');
 const scoreRoutes = require('./routes/scores');
 const badgeRoutes = require('./routes/badges');
+const adminRoutes = require('./routes/admin');
 const { seedGames }       = require('./seeders/gameSeeders');
 const { seedUsers }       = require('./seeders/userSeeders');
 const { seedScores }      = require('./seeders/scoreSeeders');
@@ -38,6 +39,7 @@ app.use('/api/auth',   authRoutes);
 app.use('/api',        gameRoutes);
 app.use('/api/scores', scoreRoutes);
 app.use('/api',        badgeRoutes);
+app.use('/api/admin',  adminRoutes);
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -61,7 +63,7 @@ async function connectWithRetry() {
 async function bootstrap() {
   try {
     await connectWithRetry();
-    await sequelize.sync();
+    await sequelize.sync({ alter: true });
     await seedGames();
     await seedUsers();
     await seedScores();

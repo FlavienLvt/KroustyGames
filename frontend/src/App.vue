@@ -1,75 +1,134 @@
 <script setup>
+import { ref } from 'vue';
 import { useAuthStore } from './stores/auth';
 import { useRouter } from 'vue-router';
 
 const authStore = useAuthStore();
 const router = useRouter();
 
+// ── Thème ──────────────────────────────────────────────────────────────────
+const isDark = ref(localStorage.getItem('theme') !== 'light');
+
+function toggleTheme() {
+  isDark.value = !isDark.value;
+  const theme = isDark.value ? 'dark' : 'light';
+  localStorage.setItem('theme', theme);
+  document.documentElement.classList.toggle('light', !isDark.value);
+}
+
+// ── Auth ───────────────────────────────────────────────────────────────────
 function handleLogout() {
   authStore.logout();
   router.push({ name: 'login' });
 }
 
+// ── Recherche ──────────────────────────────────────────────────────────────
+const searchQuery = ref('');
+
+function handleSearch() {
+  const q = searchQuery.value.trim();
+  if (!q) return;
+  router.push({ name: 'search', query: { q } });
+  searchQuery.value = '';
+}
+
+// ── Navigation ─────────────────────────────────────────────────────────────
 const gameCategories = [
   { slug: 'puzzle', icon: '🧩', label: 'Puzzle' },
   { slug: 'arcade', icon: '⚡', label: 'Arcade' },
   { slug: 'action', icon: '⚔️', label: 'Action' },
-]
+];
 </script>
 
 <template>
-  <div class="flex h-screen overflow-hidden">
+  <div class="flex h-screen overflow-hidden" style="background: var(--bg-primary)">
     <!-- Sidebar -->
-    <aside class="hidden md:flex w-60 bg-[#161722] flex-col py-5 px-2.5 border-r border-[#232533] overflow-y-auto flex-shrink-0 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-[#2a2c3f] [&::-webkit-scrollbar-thumb]:rounded">
+    <aside
+      class="hidden md:flex w-60 flex-col py-5 px-2.5 overflow-y-auto flex-shrink-0 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded"
+      style="background: var(--bg-sidebar); border-right: 1px solid var(--border-color); scrollbar-color: var(--scrollbar-thumb) transparent;"
+    >
       <div>
         <router-link :to="{ name: 'home' }" class="no-underline">
-          <h2 class="mt-0 mb-8 ml-2.5 text-[1.6rem] font-extrabold text-[#8c52ff] tracking-tight cursor-pointer">
+          <h2 class="mt-0 mb-8 ml-2.5 text-[1.6rem] font-extrabold tracking-tight cursor-pointer" style="color: var(--accent)">
             🎮 KroustyGames
           </h2>
         </router-link>
       </div>
 
-      <nav>
+      <nav class="flex-1">
         <ul class="list-none p-0 m-0">
           <router-link :to="{ name: 'home' }" custom v-slot="{ navigate, isActive }">
             <li @click="navigate"
-                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white"
-                :class="{ 'bg-[#232533] text-white font-bold': isActive }">
+                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] flex items-center transition-all"
+                :style="isActive
+                  ? 'background: var(--nav-active-bg); color: var(--nav-active-text); font-weight: 700'
+                  : 'color: var(--text-muted)'"
+                @mouseenter="e => !isActive && (e.target.style.background = 'var(--bg-card)')"
+                @mouseleave="e => !isActive && (e.target.style.background = '')">
               <span class="mr-3 text-xl">🏠</span> Accueil
             </li>
           </router-link>
           <router-link :to="{ name: 'leaderboard' }" custom v-slot="{ navigate, isActive }">
             <li @click="navigate"
-                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white"
-                :class="{ 'bg-[#232533] text-white font-bold': isActive }">
+                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] flex items-center transition-all"
+                :style="isActive
+                  ? 'background: var(--nav-active-bg); color: var(--nav-active-text); font-weight: 700'
+                  : 'color: var(--text-muted)'"
+                @mouseenter="e => !isActive && (e.target.style.background = 'var(--bg-card)')"
+                @mouseleave="e => !isActive && (e.target.style.background = '')">
               <span class="mr-3 text-xl">🏆</span> Classement
             </li>
           </router-link>
           <router-link :to="{ name: 'badges' }" custom v-slot="{ navigate, isActive }">
             <li @click="navigate"
-                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white"
-                :class="{ 'bg-[#232533] text-white font-bold': isActive }">
+                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] flex items-center transition-all"
+                :style="isActive
+                  ? 'background: var(--nav-active-bg); color: var(--nav-active-text); font-weight: 700'
+                  : 'color: var(--text-muted)'"
+                @mouseenter="e => !isActive && (e.target.style.background = 'var(--bg-card)')"
+                @mouseleave="e => !isActive && (e.target.style.background = '')">
               <span class="mr-3 text-xl">🎖️</span> Badges
             </li>
           </router-link>
           <router-link :to="{ name: 'nouveautes' }" custom v-slot="{ navigate, isActive }">
             <li @click="navigate"
-                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white"
-                :class="{ 'bg-[#232533] text-white font-bold': isActive }">
+                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] flex items-center transition-all"
+                :style="isActive
+                  ? 'background: var(--nav-active-bg); color: var(--nav-active-text); font-weight: 700'
+                  : 'color: var(--text-muted)'"
+                @mouseenter="e => !isActive && (e.target.style.background = 'var(--bg-card)')"
+                @mouseleave="e => !isActive && (e.target.style.background = '')">
               <span class="mr-3 text-xl">✨</span> Nouveautés
             </li>
           </router-link>
           <router-link :to="{ name: 'tendances' }" custom v-slot="{ navigate, isActive }">
             <li @click="navigate"
-                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white"
-                :class="{ 'bg-[#232533] text-white font-bold': isActive }">
+                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] flex items-center transition-all"
+                :style="isActive
+                  ? 'background: var(--nav-active-bg); color: var(--nav-active-text); font-weight: 700'
+                  : 'color: var(--text-muted)'"
+                @mouseenter="e => !isActive && (e.target.style.background = 'var(--bg-card)')"
+                @mouseleave="e => !isActive && (e.target.style.background = '')">
               <span class="mr-3 text-xl">🔥</span> Tendances
+            </li>
+          </router-link>
+
+          <!-- Lien admin (visible uniquement pour les admins) -->
+          <router-link v-if="authStore.isAdmin" :to="{ name: 'admin' }" custom v-slot="{ navigate, isActive }">
+            <li @click="navigate"
+                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] flex items-center transition-all"
+                :style="isActive
+                  ? 'background: var(--nav-active-bg); color: var(--nav-active-text); font-weight: 700'
+                  : 'color: var(--text-muted)'"
+                @mouseenter="e => !isActive && (e.target.style.background = 'var(--bg-card)')"
+                @mouseleave="e => !isActive && (e.target.style.background = '')">
+              <span class="mr-3 text-xl">⚙️</span> Administration
             </li>
           </router-link>
         </ul>
 
-        <div class="h-px bg-[#2a2c3f] mx-2.5 my-5"></div>
-        <h3 class="text-[0.8rem] uppercase text-[#63667c] mb-2.5 ml-4 tracking-[0.05em]">Catégories</h3>
+        <div class="h-px mx-2.5 my-5" style="background: var(--border-color)"></div>
+        <h3 class="text-[0.8rem] uppercase mb-2.5 ml-4 tracking-[0.05em]" style="color: var(--text-dim)">Catégories</h3>
 
         <ul class="list-none p-0 m-0">
           <router-link
@@ -81,8 +140,12 @@ const gameCategories = [
           >
             <li
               @click="navigate"
-              class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white"
-              :class="{ 'bg-[#232533] text-white font-bold': isActive }"
+              class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] flex items-center transition-all"
+              :style="isActive
+                ? 'background: var(--nav-active-bg); color: var(--nav-active-text); font-weight: 700'
+                : 'color: var(--text-muted)'"
+              @mouseenter="e => !isActive && (e.target.style.background = 'var(--bg-card)')"
+              @mouseleave="e => !isActive && (e.target.style.background = '')"
             >
               <span class="mr-3 text-xl">{{ cat.icon }}</span> {{ cat.label }}
             </li>
@@ -94,27 +157,45 @@ const gameCategories = [
     <!-- Main wrapper -->
     <div class="flex-1 flex flex-col overflow-hidden">
       <!-- Topbar -->
-      <header class="h-[70px] bg-[#161722] flex items-center justify-between px-8 border-b border-[#232533] flex-shrink-0">
+      <header
+        class="h-[70px] flex items-center justify-between px-8 flex-shrink-0"
+        style="background: var(--bg-topbar); border-bottom: 1px solid var(--border-color)"
+      >
+        <!-- Barre de recherche -->
         <div class="relative w-full max-w-[500px]">
-          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-[#63667c]">🔍</span>
+          <span class="absolute left-4 top-1/2 -translate-y-1/2" style="color: var(--text-dim)">🔍</span>
           <input
+            v-model="searchQuery"
             type="text"
             placeholder="Rechercher des jeux..."
-            class="w-full py-3 pl-11 pr-5 bg-[#232533] border border-transparent rounded-full text-white text-[0.95rem] outline-none transition-all duration-300 focus:border-[#8c52ff] focus:bg-[#1c1e2b]"
+            @keydown.enter="handleSearch"
+            class="w-full py-3 pl-11 pr-5 border border-transparent rounded-full text-[0.95rem] outline-none transition-all duration-300"
+            style="background: var(--bg-input); color: var(--text-primary)"
+            @focus="e => e.target.style.borderColor = 'var(--accent)'"
+            @blur="e => e.target.style.borderColor = 'transparent'"
           />
         </div>
 
-        <div class="flex items-center gap-4">
-          <button class="bg-[#232533] border-none rounded-full w-10 h-10 text-white cursor-pointer flex items-center justify-center transition hover:bg-[#313346]">🔔</button>
-          <button class="bg-[#232533] border-none rounded-full w-10 h-10 text-white cursor-pointer flex items-center justify-center transition hover:bg-[#313346]">❤️</button>
+        <div class="flex items-center gap-3">
+          <!-- Toggle thème -->
+          <button
+            @click="toggleTheme"
+            class="border-none rounded-full w-10 h-10 cursor-pointer flex items-center justify-center transition text-lg"
+            style="background: var(--bg-card); color: var(--text-primary)"
+            :title="isDark ? 'Passer en mode clair' : 'Passer en mode sombre'"
+          >
+            {{ isDark ? '☀️' : '🌙' }}
+          </button>
 
           <template v-if="authStore.isAuthenticated">
-            <span class="text-[0.95rem] text-[#b0b3c6] mr-2.5">
-              Salut, <strong class="text-[#8c52ff]">{{ authStore.user?.username }}</strong>
+            <span class="text-[0.95rem] mr-1" style="color: var(--text-muted)">
+              Salut, <strong :style="{ color: 'var(--accent)' }">{{ authStore.user?.username }}</strong>
+              <span v-if="authStore.isAdmin" class="ml-1 text-xs px-1.5 py-0.5 rounded font-bold" style="background: rgba(140,82,255,0.2); color: var(--accent)">admin</span>
             </span>
             <button
               @click="handleLogout"
-              class="bg-[#e63946] text-white border-2 border-[#e63946] px-5 py-2 rounded-full font-bold cursor-pointer transition hover:bg-[#d62828] hover:border-[#d62828]"
+              class="text-white border-none px-5 py-2 rounded-full font-bold cursor-pointer transition"
+              style="background: #e63946"
             >
               Déconnexion
             </button>
@@ -122,12 +203,18 @@ const gameCategories = [
 
           <template v-else>
             <router-link :to="{ name: 'login' }">
-              <button class="bg-transparent text-[#b0b3c6] border-2 border-[#b0b3c6] px-5 py-2 rounded-full font-bold cursor-pointer transition hover:bg-[#232533] hover:border-white hover:text-white">
+              <button
+                class="bg-transparent px-5 py-2 rounded-full font-bold cursor-pointer transition border-2"
+                style="color: var(--text-muted); border-color: var(--text-muted)"
+              >
                 Connexion
               </button>
             </router-link>
             <router-link :to="{ name: 'register' }">
-              <button class="bg-[#8c52ff] text-white border-2 border-[#8c52ff] px-5 py-2 rounded-full font-bold cursor-pointer transition hover:bg-[#7a3fff] hover:border-[#7a3fff]">
+              <button
+                class="text-white border-none px-5 py-2 rounded-full font-bold cursor-pointer transition"
+                style="background: var(--accent)"
+              >
                 S'inscrire
               </button>
             </router-link>
@@ -136,7 +223,10 @@ const gameCategories = [
       </header>
 
       <!-- Content -->
-      <main class="flex-1 overflow-y-auto p-8 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-[#2a2c3f] [&::-webkit-scrollbar-thumb]:rounded">
+      <main
+        class="flex-1 overflow-y-auto p-8 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded"
+        style="scrollbar-color: var(--scrollbar-thumb) transparent"
+      >
         <router-view></router-view>
       </main>
     </div>

@@ -2,9 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Thème sombre (défaut) ─────────────────────────────────── */
+:root {
+  --bg-primary:      #0f1016;
+  --bg-sidebar:      #161722;
+  --bg-topbar:       #161722;
+  --bg-card:         #232533;
+  --bg-card-hover:   #2a2c3f;
+  --bg-input:        #232533;
+  --text-primary:    #ffffff;
+  --text-muted:      #b0b3c6;
+  --text-dim:        #63667c;
+  --border-color:    #232533;
+  --accent:          #8c52ff;
+  --nav-active-bg:   #232533;
+  --nav-active-text: #ffffff;
+  --scrollbar-thumb: #2a2c3f;
+}
+
+/* ── Thème clair ───────────────────────────────────────────── */
+.light {
+  --bg-primary:      #f0eff7;
+  --bg-sidebar:      #fafafe;
+  --bg-topbar:       #fafafe;
+  --bg-card:         #e8e6f5;
+  --bg-card-hover:   #dddaf0;
+  --bg-input:        #e8e6f5;
+  --text-primary:    #1a1829;
+  --text-muted:      #5c5a7c;
+  --text-dim:        #9896b0;
+  --border-color:    #dddaf0;
+  --accent:          #7b3fe4;
+  --nav-active-bg:   #ede9ff;
+  --nav-active-text: #7b3fe4;
+  --scrollbar-thumb: #c5c2e0;
+}
+
 @layer base {
   body {
-    @apply bg-[#0f1016] text-white;
+    background: var(--bg-primary);
+    color: var(--text-primary);
     font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    transition: background 0.2s ease, color 0.2s ease;
   }
 }

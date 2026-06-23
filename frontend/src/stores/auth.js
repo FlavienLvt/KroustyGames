@@ -11,6 +11,7 @@ export const useAuthStore = defineStore('auth', {
 
   getters: {
     isAuthenticated: (state) => !!state.token,
+    isAdmin: (state) => state.user?.role === 'admin',
   },
 
   actions: {
@@ -36,15 +37,13 @@ export const useAuthStore = defineStore('auth', {
           password
         });
         
-        const { token, username } = response.data;
+        const { token, username, role } = response.data;
 
-        // Sauvegarder dans le store
         this.token = token;
-        this.user = { username };
+        this.user = { username, role };
 
-        // Sauvegarder dans le localStorage pour persister après un refresh
         localStorage.setItem('userToken', token);
-        localStorage.setItem('userData', JSON.stringify({ username }));
+        localStorage.setItem('userData', JSON.stringify({ username, role }));
 
         return response.data; // Succès
       } catch (error) {

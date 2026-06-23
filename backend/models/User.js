@@ -19,10 +19,18 @@ const User = sequelize.define('User', {
   password: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  role: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: 'user',
+    validate: {
+      isIn: [['admin', 'user']]
+    }
   }
 }, {
   tableName: 'users',
-  timestamps: true // Ajoute automatiquement createdAt et updatedAt
+  timestamps: true
 });
 
 module.exports = User;

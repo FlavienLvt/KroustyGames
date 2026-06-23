@@ -19,6 +19,7 @@ import BadgesView from '../views/BadgesView.vue'
 import KroustyCrushView from '../views/games/KroustyCrushView.vue'
 import KroustySurvivorsView from '../views/games/KroustySurvivorsView.vue'
 import AngryNuggetsView from '../views/games/AngryNuggetsView.vue'
+import AdminView from '../views/AdminView.vue'
 
 const routes = [
   { path: '/',            name: 'home',         component: HomeView        },
@@ -38,6 +39,7 @@ const routes = [
   { path: '/tendances',           name: 'tendances',     component: TendancesView  },
   { path: '/category/:category',  name: 'category',      component: CategoryView, props: true },
   { path: '/search',              name: 'search',        component: SearchView     },
+  { path: '/admin',               name: 'admin',         component: AdminView, meta: { requiresAdmin: true } },
   { path: '/:pathMatch(.*)*',     name: 'not-found',     component: NotFoundView   }
 ]
 
@@ -48,11 +50,17 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
+
   if ((to.name === 'login' || to.name === 'register') && authStore.isAuthenticated) {
-    next({ name: 'home' })
-  } else {
-    next()
+    return next({ name: 'home' })
   }
+
+  if (to.meta.requiresAdmin) {
+    if (!authStore.isAuthenticated) return next({ name: 'login' })
+    if (!authStore.isAdmin) return next({ name: 'home' })
+  }
+
+  next()
 })
 
 export default router

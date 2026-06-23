@@ -2,8 +2,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-const SECRET_KEY = process.env.JWT_SECRET || 'kroustygames_secret_key_temp';
-
 async function registerUser(username, email, password) {
   const existingUser = await User.findOne({ where: { email } });
   if (existingUser) {
@@ -13,7 +11,7 @@ async function registerUser(username, email, password) {
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
-  const newUser = await User.create({ username, email, password: hashedPassword });
+  const newUser = await User.create({ username, email, password: hashedPassword, role: 'user' });
   return newUser;
 }
 
@@ -33,12 +31,12 @@ async function loginUser(email, password) {
   }
 
   const token = jwt.sign(
-    { userId: user.id, username: user.username },
-    SECRET_KEY,
+    { userId: user.id, username: user.username, role: user.role },
+    process.env.JWT_SECRET,
     { expiresIn: '24h' }
   );
 
-  return { token, username: user.username };
+  return { token, username: user.username, role: user.role };
 }
 
 module.exports = { registerUser, loginUser };

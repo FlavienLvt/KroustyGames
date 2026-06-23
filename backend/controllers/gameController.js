@@ -3,8 +3,8 @@ const gameService = require('../services/gameService');
 async function getGames(req, res) {
   try {
     // Récupération de la section depuis l'URL (ex: /games?section=new)
-    const { section } = req.query; 
-    const games = await gameService.listGames(section);
+    const { section, search } = req.query;
+    const games = await gameService.listGames(section, search);
     
     res.status(200).json(games);
   } catch (error) {

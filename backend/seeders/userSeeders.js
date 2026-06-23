@@ -3,22 +3,29 @@ const User = require('../models/User');
 
 async function seedUsers() {
   try {
-    const count = await User.count();
-    if (count > 0) {
-      console.log('ℹ️ Les utilisateurs existent déjà, création ignorée.');
-      return;
-    }
-
-    console.log('⏳ Création des comptes par défaut...');
     const defaultPassword = await bcrypt.hash('password123', 10);
 
-    await User.bulkCreate([
-      { username: 'KroustyAdmin', email: 'admin@kroustygames.com', password: defaultPassword },
-      { username: 'PlayerOne',    email: 'player1@test.com',       password: defaultPassword },
-      { username: 'NuggetMaster', email: 'nugget@test.com',        password: defaultPassword }
-    ]);
+    // Toujours s'assurer que KroustyAdmin est admin (gère les BDs existantes)
+    const [admin, adminCreated] = await User.findOrCreate({
+      where: { username: 'KroustyAdmin' },
+      defaults: { email: 'admin@kroustygames.com', password: defaultPassword, role: 'admin' }
+    });
+    if (!adminCreated && admin.role !== 'admin') {
+      await admin.update({ role: 'admin' });
+      console.log('✅ KroustyAdmin promu administrateur.');
+    }
 
-    console.log('✅ Comptes par défaut créés avec succès !');
+    await User.findOrCreate({
+      where: { username: 'PlayerOne' },
+      defaults: { email: 'player1@test.com', password: defaultPassword, role: 'user' }
+    });
+
+    await User.findOrCreate({
+      where: { username: 'NuggetMaster' },
+      defaults: { email: 'nugget@test.com', password: defaultPassword, role: 'user' }
+    });
+
+    console.log('✅ Comptes par défaut vérifiés/créés !');
   } catch (error) {
     console.error('❌ Erreur lors de la création des comptes par défaut:', error);
   }
