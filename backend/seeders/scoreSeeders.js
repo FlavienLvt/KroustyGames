@@ -1,40 +1,62 @@
 const Score = require('../models/Score');
 const User = require('../models/User');
 
+const SCORE_SEEDS = [
+  // --- 2048 ---
+  { score: 32500, gameSlug: '2048',              username: 'KroustyAdmin' },
+  { score: 15420, gameSlug: '2048',              username: 'PlayerOne'    },
+  { score:  8900, gameSlug: '2048',              username: 'NuggetMaster' },
+  // --- Krousty Run ---
+  { score:  1250, gameSlug: 'krousty-run',       username: 'NuggetMaster' },
+  { score:   850, gameSlug: 'krousty-run',       username: 'PlayerOne'    },
+  { score:   420, gameSlug: 'krousty-run',       username: 'KroustyAdmin' },
+  // --- Flappy Nugget ---
+  { score:    45, gameSlug: 'flappy-nugget',     username: 'PlayerOne'    },
+  { score:    32, gameSlug: 'flappy-nugget',     username: 'NuggetMaster' },
+  { score:    12, gameSlug: 'flappy-nugget',     username: 'KroustyAdmin' },
+  // --- Krousty Crush ---
+  { score:  5800, gameSlug: 'krousty-crush',     username: 'NuggetMaster' },
+  { score:  2400, gameSlug: 'krousty-crush',     username: 'PlayerOne'    },
+  { score:   650, gameSlug: 'krousty-crush',     username: 'KroustyAdmin' },
+  // --- Krousty Survivors ---
+  { score:  1200, gameSlug: 'krousty-survivors', username: 'KroustyAdmin' },
+  { score:   580, gameSlug: 'krousty-survivors', username: 'NuggetMaster' },
+  { score:   120, gameSlug: 'krousty-survivors', username: 'PlayerOne'    },
+  // --- Angry Nuggets ---
+  { score:  1450, gameSlug: 'angry-nuggets',     username: 'PlayerOne'    },
+  { score:   720, gameSlug: 'angry-nuggets',     username: 'KroustyAdmin' },
+  { score:   210, gameSlug: 'angry-nuggets',     username: 'NuggetMaster' },
+];
+
 async function seedScores() {
   try {
-    const count = await Score.count();
-    if (count > 0) {
-      console.log('ℹ️ Les scores existent déjà, création ignorée.');
-      return;
-    }
-
-    console.log('⏳ Création des scores par défaut...');
-
-    const admin  = await User.findOne({ where: { username: 'KroustyAdmin' } });
-    const player = await User.findOne({ where: { username: 'PlayerOne' } });
-    const nugget = await User.findOne({ where: { username: 'NuggetMaster' } });
-
-    if (!admin || !player || !nugget) {
+    const users = await User.findAll({ where: { username: ['KroustyAdmin', 'PlayerOne', 'NuggetMaster'] } });
+    if (users.length === 0) {
       console.log("⚠️ Utilisateurs par défaut introuvables. Lancez seedUsers d'abord.");
       return;
     }
+    const userMap = Object.fromEntries(users.map(u => [u.username, u.id]));
 
-    await Score.bulkCreate([
-      { score: 32500, gameSlug: '2048',          userId: admin.id  },
-      { score: 15420, gameSlug: '2048',          userId: player.id },
-      { score:  8900, gameSlug: '2048',          userId: nugget.id },
-      { score:  1250, gameSlug: 'krousty-run',   userId: nugget.id },
-      { score:   850, gameSlug: 'krousty-run',   userId: player.id },
-      { score:   420, gameSlug: 'krousty-run',   userId: admin.id  },
-      { score:    45, gameSlug: 'flappy-nugget', userId: player.id },
-      { score:    32, gameSlug: 'flappy-nugget', userId: nugget.id },
-      { score:    12, gameSlug: 'flappy-nugget', userId: admin.id  }
-    ]);
+    // Récupère les slugs déjà présents en base
+    const existingRows = await Score.findAll({
+      where: { userId: users.map(u => u.id) },
+      attributes: ['gameSlug', 'userId']
+    });
+    const existingSet = new Set(existingRows.map(r => `${r.gameSlug}:${r.userId}`));
 
-    console.log('✅ Scores par défaut créés avec succès !');
+    const toInsert = SCORE_SEEDS
+      .filter(s => userMap[s.username])
+      .filter(s => !existingSet.has(`${s.gameSlug}:${userMap[s.username]}`))
+      .map(s => ({ score: s.score, gameSlug: s.gameSlug, userId: userMap[s.username] }));
+
+    if (toInsert.length > 0) {
+      await Score.bulkCreate(toInsert);
+      console.log(`✅ ${toInsert.length} score(s) seedé(s)`);
+    } else {
+      console.log('✅ Scores déjà à jour');
+    }
   } catch (error) {
-    console.error('❌ Erreur lors de la création des scores par défaut:', error);
+    console.error('❌ Erreur lors du seed des scores:', error);
   }
 }
 

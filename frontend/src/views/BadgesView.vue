@@ -11,10 +11,13 @@ onMounted(async () => {
 })
 
 const CATEGORIES = [
-  { key: 'account', label: 'Compte', icon: '👤' },
-  { key: '2048',    label: '2048',   icon: '🔢', gameSlug: '2048' },
-  { key: 'krousty-run',    label: 'Krousty Run',   icon: '🏃', gameSlug: 'krousty-run' },
-  { key: 'flappy-nugget',  label: 'Flappy Nugget',  icon: '🐔', gameSlug: 'flappy-nugget' },
+  { key: 'account',          label: 'Compte',            icon: '👤' },
+  { key: '2048',             label: '2048',              icon: '🔢', gameSlug: '2048' },
+  { key: 'krousty-run',      label: 'Krousty Run',       icon: '🏃', gameSlug: 'krousty-run' },
+  { key: 'flappy-nugget',    label: 'Flappy Nugget',     icon: '🐔', gameSlug: 'flappy-nugget' },
+  { key: 'krousty-crush',    label: 'Krousty Crush',     icon: '🍬', gameSlug: 'krousty-crush' },
+  { key: 'krousty-survivors',label: 'Krousty Survivors', icon: '🛡️', gameSlug: 'krousty-survivors' },
+  { key: 'angry-nuggets',    label: 'Angry Nuggets',     icon: '🐔', gameSlug: 'angry-nuggets' },
 ]
 
 function badgesForCategory(cat) {
@@ -98,7 +101,7 @@ const rankEmoji = ['🥇', '🥈', '🥉']
               </td>
               <td class="px-5 py-4 text-right">
                 <span class="bg-[#8c52ff] text-white text-xs font-bold px-3 py-1 rounded-full">
-                  {{ entry.badgeCount }} / 13
+                  {{ entry.badgeCount }} / 22
                 </span>
               </td>
             </tr>

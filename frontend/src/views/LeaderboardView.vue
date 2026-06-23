@@ -48,9 +48,12 @@ import { ref, onMounted } from 'vue'
 const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:3001'
 
 const games = [
-  { slug: '2048',          label: '2048'         },
-  { slug: 'krousty-run',   label: 'Krousty Run'  },
-  { slug: 'flappy-nugget', label: 'Flappy Nugget' },
+  { slug: '2048',              label: '2048'             },
+  { slug: 'krousty-run',       label: 'Krousty Run'      },
+  { slug: 'flappy-nugget',     label: 'Flappy Nugget'    },
+  { slug: 'krousty-crush',     label: 'Krousty Crush'    },
+  { slug: 'krousty-survivors', label: 'Krousty Survivors'},
+  { slug: 'angry-nuggets',     label: 'Angry Nuggets'    },
 ]
 
 const selectedGame = ref(games[0].slug)

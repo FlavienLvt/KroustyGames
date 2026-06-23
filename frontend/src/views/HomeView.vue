@@ -216,11 +216,7 @@ const loadGames = async () => {
 }
 
 const navigateToGame = (slug) => {
-  if (['2048', 'krousty-run', 'flappy-nugget'].includes(slug)) {
-    router.push({ name: slug })
-  } else {
-    alert("Ce jeu n'est pas encore disponible !")
-  }
+  router.push({ name: slug })
 }
 
 onMounted(loadGames)
