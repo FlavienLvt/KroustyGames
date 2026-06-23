@@ -30,19 +30,25 @@ const gameSeed = [
     description: 'Volez à travers les jets de sauce !',
     sections: ['new', 'featured'],
     orderIndex: 1
+  },
+  {
+    title: 'Frite Fighter',
+    slug: 'frite-fighter',
+    image: 'https://placehold.co/300x200/1e1e24/ffffff?text=Frite+Fighter',
+    badge: 'New',
+    badgeType: 'red',
+    description: 'Écrase les nuggets avant qu\'ils s\'échappent de la friteuse !',
+    sections: ['top-picks', 'new'],
+    orderIndex: 2
   }
 ];
 
 async function seedGames() {
   try {
-    const gamesCount = await Game.count();
-
-    if (gamesCount === 0) {
-      await Game.bulkCreate(gameSeed);
-      console.log('Jeux initialisés avec succès.');
-    } else {
-      console.log('Les jeux existent déjà, seeding ignoré.');
+    for (const game of gameSeed) {
+      await Game.findOrCreate({ where: { slug: game.slug }, defaults: game });
     }
+    console.log('Jeux initialisés avec succès.');
   } catch (error) {
     console.error('Erreur lors du seeding des jeux:', error);
   }

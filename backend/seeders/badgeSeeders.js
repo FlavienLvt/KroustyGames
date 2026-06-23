@@ -21,14 +21,17 @@ const BADGE_DEFINITIONS = [
   { key: 'score_flappy_bronze', name: 'Poulet',      description: 'Atteindre 10 points sur Flappy Nugget', icon: '🥉', category: 'game', gameSlug: 'flappy-nugget', threshold: 10 },
   { key: 'score_flappy_silver', name: 'Nugget',      description: 'Atteindre 25 points sur Flappy Nugget', icon: '🥈', category: 'game', gameSlug: 'flappy-nugget', threshold: 25 },
   { key: 'score_flappy_gold',   name: 'KroustyBird', description: 'Atteindre 40 points sur Flappy Nugget', icon: '🥇', category: 'game', gameSlug: 'flappy-nugget', threshold: 40 },
+  // --- Frite Fighter ---
+  { key: 'score_ff_bronze', name: 'Chasseur de Frites',    description: 'Atteindre 20 points sur Frite Fighter',  icon: '🍟', category: 'game', gameSlug: 'frite-fighter', threshold: 20 },
+  { key: 'score_ff_silver', name: 'Maître Friturier',      description: 'Atteindre 45 points sur Frite Fighter',  icon: '🏅', category: 'game', gameSlug: 'frite-fighter', threshold: 45 },
+  { key: 'score_ff_gold',   name: 'Légende de la Friteuse',description: 'Atteindre 75 points sur Frite Fighter',  icon: '🥇', category: 'game', gameSlug: 'frite-fighter', threshold: 75 },
 ];
 
 async function seedBadges() {
-  const count = await Badge.count();
-  if (count > 0) return;
-
-  await Badge.bulkCreate(BADGE_DEFINITIONS);
-  console.log('✅ Badges seedés (13 badges)');
+  for (const badge of BADGE_DEFINITIONS) {
+    await Badge.findOrCreate({ where: { key: badge.key }, defaults: badge });
+  }
+  console.log('✅ Badges seedés (16 badges)');
 }
 
 async function seedUserBadges() {

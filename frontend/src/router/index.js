@@ -7,6 +7,7 @@ import RegisterView from '../views/auth/RegisterView.vue'
 import MyGame from '../views/games/2048View.vue'
 import KroustyRun from '../views/games/KroustyRunView.vue'
 import FlappyNugget from '../views/games/FlappyNuggetView.vue'
+import FriteFighter from '../views/games/FriteFighterView.vue'
 import NouveautesView from '../views/NouveautesView.vue'
 import TendancesView from '../views/TendancesView.vue'
 import CategoryView from '../views/CategoryView.vue'
@@ -24,6 +25,7 @@ const routes = [
   { path: '/games/2048',          name: '2048',          component: MyGame       },
   { path: '/games/krousty-run',   name: 'krousty-run',   component: KroustyRun  },
   { path: '/games/flappy-nugget', name: 'flappy-nugget', component: FlappyNugget },
+  { path: '/games/frite-fighter', name: 'frite-fighter', component: FriteFighter },
   { path: '/nouveautes',          name: 'nouveautes',    component: NouveautesView },
   { path: '/tendances',           name: 'tendances',     component: TendancesView  },
   { path: '/category/:category',  name: 'category',      component: CategoryView, props: true },
