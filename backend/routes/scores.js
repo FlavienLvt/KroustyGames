@@ -4,6 +4,7 @@ const scoreController = require('../controllers/scoreController');
 const authMiddleware = require('../middleware/authMiddleware');
 
 router.post('/', authMiddleware, scoreController.saveScore);
+router.get('/stats', scoreController.getStats);
 router.get('/:gameSlug', scoreController.getLeaderboard);
 
 module.exports = router;

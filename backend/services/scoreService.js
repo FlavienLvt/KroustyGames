@@ -14,4 +14,22 @@ async function getLeaderboard(gameSlug) {
   });
 }
 
-module.exports = { saveScore, getLeaderboard };
+async function getScoreStats() {
+  const { fn, col } = require('sequelize');
+  const rows = await Score.findAll({
+    attributes: [
+      'gameSlug',
+      [fn('COUNT', col('id')), 'count'],
+      [fn('MAX', col('score')), 'maxScore']
+    ],
+    group: ['gameSlug'],
+    order: [[fn('COUNT', col('id')), 'DESC']]
+  });
+  return rows.map(r => ({
+    gameSlug: r.gameSlug,
+    count:    parseInt(r.dataValues.count, 10)    || 0,
+    maxScore: parseInt(r.dataValues.maxScore, 10) || 0,
+  }));
+}
+
+module.exports = { saveScore, getLeaderboard, getScoreStats };

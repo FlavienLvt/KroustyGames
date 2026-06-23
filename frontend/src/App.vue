@@ -10,12 +10,10 @@ function handleLogout() {
   router.push({ name: 'login' });
 }
 
-const categories = [
-  { slug: 'action',   icon: '⚔️',  label: 'Action'   },
-  { slug: 'aventure', icon: '🗺️', label: 'Aventure'  },
-  { slug: 'voiture',  icon: '🚗',  label: 'Voiture'   },
-  { slug: 'puzzle',   icon: '🧩',  label: 'Puzzle'    },
-  { slug: 'tir',      icon: '🔫',  label: 'Tir'       },
+const gameCategories = [
+  { slug: 'puzzle', icon: '🧩', label: 'Puzzle' },
+  { slug: 'arcade', icon: '⚡', label: 'Arcade' },
+  { slug: 'action', icon: '⚔️', label: 'Action' },
 ]
 </script>
 
@@ -74,10 +72,18 @@ const categories = [
         <h3 class="text-[0.8rem] uppercase text-[#63667c] mb-2.5 ml-4 tracking-[0.05em]">Catégories</h3>
 
         <ul class="list-none p-0 m-0">
-          <router-link v-for="cat in categories" :key="cat.slug" :to="{ name: 'category', params: { category: cat.slug } }" custom v-slot="{ navigate, isActive }">
-            <li @click="navigate"
-                class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white"
-                :class="{ 'bg-[#232533] text-white font-bold': isActive }">
+          <router-link
+            v-for="cat in gameCategories"
+            :key="cat.slug"
+            :to="{ name: 'category', params: { category: cat.slug } }"
+            custom
+            v-slot="{ navigate, isActive }"
+          >
+            <li
+              @click="navigate"
+              class="px-4 py-3 mb-1 rounded-lg cursor-pointer text-[0.95rem] text-[#b0b3c6] flex items-center transition-all hover:bg-[#232533] hover:text-white"
+              :class="{ 'bg-[#232533] text-white font-bold': isActive }"
+            >
               <span class="mr-3 text-xl">{{ cat.icon }}</span> {{ cat.label }}
             </li>
           </router-link>
