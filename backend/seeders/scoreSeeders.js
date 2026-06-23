@@ -26,6 +26,14 @@ const SCORE_SEEDS = [
   { score:  1450, gameSlug: 'angry-nuggets',     username: 'PlayerOne'    },
   { score:   720, gameSlug: 'angry-nuggets',     username: 'KroustyAdmin' },
   { score:   210, gameSlug: 'angry-nuggets',     username: 'NuggetMaster' },
+  // --- Frite Fighter ---
+  { score:    78, gameSlug: 'frite-fighter',     username: 'NuggetMaster' },
+  { score:    52, gameSlug: 'frite-fighter',     username: 'KroustyAdmin' },
+  { score:    24, gameSlug: 'frite-fighter',     username: 'PlayerOne'    },
+  // --- Ketchup Defender ---
+  { score:  1620, gameSlug: 'ketchup-defender',  username: 'KroustyAdmin' },
+  { score:   680, gameSlug: 'ketchup-defender',  username: 'NuggetMaster' },
+  { score:   230, gameSlug: 'ketchup-defender',  username: 'PlayerOne'    },
 ];
 
 async function seedScores() {

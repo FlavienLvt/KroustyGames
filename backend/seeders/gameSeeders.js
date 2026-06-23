@@ -32,7 +32,16 @@ const gameSeed = [
     orderIndex: 1
   },
   {
-<<<<<<< HEAD
+    title: 'Frite Fighter',
+    slug: 'frite-fighter',
+    image: 'https://placehold.co/300x200/1e1e24/ffffff?text=Frite+Fighter',
+    badge: 'New',
+    badgeType: 'red',
+    description: "Écrase les nuggets avant qu'ils s'échappent de la friteuse !",
+    sections: ['top-picks', 'new'],
+    orderIndex: 2
+  },
+  {
     title: 'Ketchup Defender',
     slug: 'ketchup-defender',
     image: 'https://placehold.co/300x200/1e1e24/ffffff?text=Ketchup+Defender',
@@ -43,15 +52,6 @@ const gameSeed = [
     orderIndex: 3
   },
   {
-    title: 'Frite Fighter',
-    slug: 'frite-fighter',
-    image: 'https://placehold.co/300x200/1e1e24/ffffff?text=Frite+Fighter',
-    badge: 'New',
-    badgeType: 'red',
-    description: 'Écrase les nuggets avant qu\'ils s\'échappent de la friteuse !',
-    sections: ['top-picks', 'new'],
-    orderIndex: 2
-=======
     title: 'Krousty Crush',
     slug: 'krousty-crush',
     image: 'https://placehold.co/300x200/1e1e24/8c52ff?text=Krousty+Crush',
@@ -59,7 +59,7 @@ const gameSeed = [
     badgeType: 'purple',
     description: 'Aligne 3 nuggets ou plus pour les faire exploser !',
     sections: ['new', 'featured'],
-    orderIndex: 2
+    orderIndex: 4
   },
   {
     title: 'Krousty Survivors',
@@ -69,7 +69,7 @@ const gameSeed = [
     badgeType: 'red',
     description: 'Survie des vagues infinies de friteuses ennemies !',
     sections: ['new'],
-    orderIndex: 3
+    orderIndex: 5
   },
   {
     title: 'Angry Nuggets',
@@ -79,8 +79,7 @@ const gameSeed = [
     badgeType: 'yellow',
     description: 'Lance des nuggets sur les structures ennemies avec ta catapulte !',
     sections: ['new', 'featured'],
-    orderIndex: 4
->>>>>>> moreGames
+    orderIndex: 6
   }
 ];
 
