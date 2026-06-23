@@ -25,6 +25,10 @@ const BADGE_DEFINITIONS = [
   { key: 'score_ff_bronze', name: 'Chasseur de Frites',    description: 'Atteindre 20 points sur Frite Fighter',  icon: '🍟', category: 'game', gameSlug: 'frite-fighter', threshold: 20 },
   { key: 'score_ff_silver', name: 'Maître Friturier',      description: 'Atteindre 45 points sur Frite Fighter',  icon: '🏅', category: 'game', gameSlug: 'frite-fighter', threshold: 45 },
   { key: 'score_ff_gold',   name: 'Légende de la Friteuse',description: 'Atteindre 75 points sur Frite Fighter',  icon: '🥇', category: 'game', gameSlug: 'frite-fighter', threshold: 75 },
+  // --- Ketchup Defender ---
+  { key: 'score_kd_bronze', name: 'Tireur de Ketchup',  description: 'Atteindre 200 pts sur Ketchup Defender',  icon: '🍅', category: 'game', gameSlug: 'ketchup-defender', threshold: 200  },
+  { key: 'score_kd_silver', name: 'Défenseur Sauce',    description: 'Atteindre 600 pts sur Ketchup Defender',  icon: '🏅', category: 'game', gameSlug: 'ketchup-defender', threshold: 600  },
+  { key: 'score_kd_gold',   name: 'Maître Ketchup',     description: 'Atteindre 1 500 pts sur Ketchup Defender',icon: '🥇', category: 'game', gameSlug: 'ketchup-defender', threshold: 1500 },
 ];
 
 async function seedBadges() {

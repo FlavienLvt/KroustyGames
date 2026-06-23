@@ -32,6 +32,16 @@ const gameSeed = [
     orderIndex: 1
   },
   {
+    title: 'Ketchup Defender',
+    slug: 'ketchup-defender',
+    image: 'https://placehold.co/300x200/1e1e24/ffffff?text=Ketchup+Defender',
+    badge: 'New',
+    badgeType: 'red',
+    description: 'Défends la cuisine contre les vagues de nuggets et de frites !',
+    sections: ['top-picks', 'new'],
+    orderIndex: 3
+  },
+  {
     title: 'Frite Fighter',
     slug: 'frite-fighter',
     image: 'https://placehold.co/300x200/1e1e24/ffffff?text=Frite+Fighter',

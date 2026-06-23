@@ -51,7 +51,8 @@ const games = [
   { slug: '2048',          label: '2048'          },
   { slug: 'krousty-run',   label: 'Krousty Run'   },
   { slug: 'flappy-nugget', label: 'Flappy Nugget'  },
-  { slug: 'frite-fighter', label: 'Frite Fighter'  },
+  { slug: 'frite-fighter',    label: 'Frite Fighter'     },
+  { slug: 'ketchup-defender', label: 'Ketchup Defender'  },
 ]
 
 const selectedGame = ref(games[0].slug)

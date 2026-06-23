@@ -15,7 +15,8 @@ const CATEGORIES = [
   { key: '2048',    label: '2048',   icon: '🔢', gameSlug: '2048' },
   { key: 'krousty-run',    label: 'Krousty Run',   icon: '🏃', gameSlug: 'krousty-run' },
   { key: 'flappy-nugget',  label: 'Flappy Nugget',  icon: '🐔', gameSlug: 'flappy-nugget' },
-  { key: 'frite-fighter',  label: 'Frite Fighter',  icon: '🍟', gameSlug: 'frite-fighter' },
+  { key: 'frite-fighter',    label: 'Frite Fighter',    icon: '🍟', gameSlug: 'frite-fighter'    },
+  { key: 'ketchup-defender', label: 'Ketchup Defender', icon: '🍅', gameSlug: 'ketchup-defender' },
 ]
 
 function badgesForCategory(cat) {
