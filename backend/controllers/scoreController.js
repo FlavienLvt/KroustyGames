@@ -25,4 +25,14 @@ async function getLeaderboard(req, res) {
   }
 }
 
-module.exports = { saveScore, getLeaderboard };
+async function getStats(req, res) {
+  try {
+    const stats = await scoreService.getScoreStats();
+    res.json(stats);
+  } catch (error) {
+    console.error('Erreur fetch score stats:', error);
+    res.status(500).json({ message: 'Erreur lors de la récupération des stats.' });
+  }
+}
+
+module.exports = { saveScore, getLeaderboard, getStats };
