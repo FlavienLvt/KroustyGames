@@ -260,7 +260,7 @@ export default {
 
       // Player
       if (!this.blink && this.player) {
-        ctx.fillStyle = '#8c52ff'; ctx.beginPath(); ctx.arc(this.player.x, this.player.y, PLAYER_R, 0, Math.PI*2); ctx.fill()
+        ctx.fillStyle = '#f97316'; ctx.beginPath(); ctx.arc(this.player.x, this.player.y, PLAYER_R, 0, Math.PI*2); ctx.fill()
         ctx.font = `${PLAYER_R*2}px serif`
         ctx.fillText('🍗', this.player.x, this.player.y+1)
       }
@@ -282,7 +282,7 @@ export default {
       if (this.screen === 'playing' && this.enemiesPerWave > 0) {
         const progress = this.killedThisWave / this.enemiesPerWave
         ctx.fillStyle = 'rgba(0,0,0,0.4)'; ctx.fillRect(0, H-6, W, 6)
-        ctx.fillStyle = '#8c52ff'; ctx.fillRect(0, H-6, W * progress, 6)
+        ctx.fillStyle = '#f97316'; ctx.fillRect(0, H-6, W * progress, 6)
       }
     },
 
@@ -339,7 +339,7 @@ export default {
 
     <!-- Upgrade overlay (par-dessus le canvas) -->
     <div v-if="screen === 'upgrade'" class="flex flex-col items-center gap-5 -mt-4">
-      <div class="bg-[#0f1016]/90 border border-[#8c52ff] rounded-2xl px-8 py-6 flex flex-col items-center gap-4 w-full max-w-xl">
+      <div class="bg-[#0f1016]/90 border border-[#f97316] rounded-2xl px-8 py-6 flex flex-col items-center gap-4 w-full max-w-xl">
         <p class="text-green-400 font-bold text-lg">✅ Vague {{ wave - 1 }} terminée ! +{{ (wave-1) * 50 }} pts bonus</p>
         <p class="text-white font-bold">Choisis ton amélioration :</p>
         <div class="flex gap-3 flex-wrap justify-center">
@@ -347,7 +347,7 @@ export default {
             v-for="upg in pendingUpgrades"
             :key="upg.id"
             @click="chooseUpgrade(upg)"
-            class="bg-[#1e2030] border border-[#8c52ff] rounded-xl p-4 flex flex-col items-center gap-2 hover:bg-[#2a2c3f] transition cursor-pointer w-36"
+            class="bg-[#1e2030] border border-[#f97316] rounded-xl p-4 flex flex-col items-center gap-2 hover:bg-[#2a2c3f] transition cursor-pointer w-36"
           >
             <span class="text-3xl">{{ upg.icon }}</span>
             <span class="text-white font-bold text-sm text-center leading-tight">{{ upg.label }}</span>

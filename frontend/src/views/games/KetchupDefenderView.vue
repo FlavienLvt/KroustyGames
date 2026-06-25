@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="flex justify-between items-center w-full max-w-[600px] mb-5 gap-5">
       <div class="flex-1">
-        <h1 class="text-[2.5rem] font-extrabold m-0 text-[#8c52ff] tracking-[-1px]">Ketchup Defender</h1>
+        <h1 class="text-[2.5rem] font-extrabold m-0 text-[#f97316] tracking-[-1px]">Ketchup Defender</h1>
         <p class="m-0 text-[#63667c] text-[0.9rem] leading-[1.4]">← → pour bouger, Espace pour tirer !</p>
       </div>
       <div class="flex-shrink-0 flex items-center gap-3">
@@ -16,7 +16,7 @@
           <strong class="text-[1.3rem] font-bold leading-tight">{{ '❤️'.repeat(lives) }}</strong>
         </div>
         <div class="bg-[#232533] px-5 py-2.5 rounded-xl text-center shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
-          <span class="block text-[0.75rem] text-[#8c52ff] font-bold">SCORE</span>
+          <span class="block text-[0.75rem] text-[#f97316] font-bold">SCORE</span>
           <strong class="text-[1.5rem] font-bold">{{ score }}</strong>
         </div>
       </div>
@@ -41,7 +41,7 @@
           Toutes les 3 vagues, un <strong class="text-yellow-400">boss 👑</strong> débarque !
         </p>
         <button
-          class="font-bold border-none rounded-full cursor-pointer bg-[#8c52ff] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
+          class="font-bold border-none rounded-full cursor-pointer bg-[#f97316] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
           @click="startGame"
         >
           Jouer
@@ -54,7 +54,7 @@
         class="absolute inset-0 bg-[rgba(15,16,22,0.70)] flex flex-col justify-center items-center z-10 rounded-[15px]"
       >
         <h2 class="text-[2.2rem] text-white mb-1">Vague {{ wave }} terminée ! 🎉</h2>
-        <p class="text-[#8c52ff] text-[1.3rem] font-bold">+{{ wave * 50 }} pts de bonus</p>
+        <p class="text-[#f97316] text-[1.3rem] font-bold">+{{ wave * 50 }} pts de bonus</p>
         <p class="text-[#63667c] text-[0.9rem] mt-2">Vague {{ wave + 1 }} dans quelques secondes…</p>
       </div>
 
@@ -64,9 +64,9 @@
         class="absolute inset-0 bg-[rgba(15,16,22,0.90)] flex flex-col justify-center items-center z-10 backdrop-blur-sm rounded-[15px]"
       >
         <h2 class="text-[2.5rem] mb-2 text-white text-center">Invasion réussie... 💀</h2>
-        <p class="text-[1.2rem] text-[#8c52ff] mb-6 font-bold">Score final : {{ score }} pts</p>
+        <p class="text-[1.2rem] text-[#f97316] mb-6 font-bold">Score final : {{ score }} pts</p>
         <button
-          class="font-bold border-none rounded-full cursor-pointer bg-[#8c52ff] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
+          class="font-bold border-none rounded-full cursor-pointer bg-[#f97316] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
           @click="startGame"
         >
           Rejouer
@@ -314,7 +314,7 @@ export default {
       ctx.fillRect(0, 0, W, H)
 
       // Subtle grid
-      ctx.strokeStyle = 'rgba(140,82,255,0.05)'
+      ctx.strokeStyle = 'rgba(249,115,22,0.05)'
       ctx.lineWidth = 1
       for (let x = 0; x < W; x += 40) {
         ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke()

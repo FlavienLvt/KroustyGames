@@ -49,8 +49,8 @@ const gameCategories = [
     >
       <div>
         <router-link :to="{ name: 'home' }" class="no-underline">
-          <h2 class="mt-0 mb-8 ml-2.5 text-[1.6rem] font-extrabold tracking-tight cursor-pointer" style="color: var(--accent)">
-            🎮 KroustyGames
+          <h2 class="mt-0 mb-8 ml-2.5 text-[1.6rem] font-extrabold tracking-tight cursor-pointer flex items-center gap-2" style="color: var(--accent)">
+            <span class="leading-none">🎮</span><span>KroustyGames</span>
           </h2>
         </router-link>
       </div>
@@ -190,7 +190,7 @@ const gameCategories = [
           <template v-if="authStore.isAuthenticated">
             <span class="text-[0.95rem] mr-1" style="color: var(--text-muted)">
               Salut, <strong :style="{ color: 'var(--accent)' }">{{ authStore.user?.username }}</strong>
-              <span v-if="authStore.isAdmin" class="ml-1 text-xs px-1.5 py-0.5 rounded font-bold" style="background: rgba(140,82,255,0.2); color: var(--accent)">admin</span>
+              <span v-if="authStore.isAdmin" class="ml-1 text-xs px-1.5 py-0.5 rounded font-bold" style="background: rgba(249,115,22,0.2); color: var(--accent)">admin</span>
             </span>
             <button
               @click="handleLogout"

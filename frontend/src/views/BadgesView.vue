@@ -55,13 +55,13 @@ const rankEmoji = ['🥇', '🥈', '🥉']
           :key="badge.key"
           class="rounded-xl p-4 flex flex-col items-center text-center transition-all border"
           :class="badge.earned
-            ? 'bg-[#1e1a30] border-[#8c52ff] shadow-[0_0_12px_rgba(140,82,255,0.25)]'
+            ? 'bg-[#1c1208] border-[#f97316] shadow-[0_0_12px_rgba(249,115,22,0.25)]'
             : 'bg-[#161722] border-[#232533] opacity-50 grayscale'"
         >
           <span class="text-4xl mb-2">{{ badge.icon }}</span>
           <span class="text-white font-bold text-sm leading-tight mb-1">{{ badge.name }}</span>
           <span class="text-[#b0b3c6] text-xs leading-tight mb-2">{{ badge.description }}</span>
-          <span v-if="badge.earned" class="text-[#8c52ff] text-[0.7rem] font-semibold mt-auto">
+          <span v-if="badge.earned" class="text-[#f97316] text-[0.7rem] font-semibold mt-auto">
             ✓ {{ formatDate(badge.earnedAt) }}
           </span>
           <span v-else class="text-[#63667c] text-[0.7rem] mt-auto">🔒 Verrouillé</span>
@@ -91,7 +91,7 @@ const rankEmoji = ['🥇', '🥈', '🥉']
               v-for="entry in badgesStore.leaderboard"
               :key="entry.rank"
               class="border-b border-[#1e2030] transition hover:bg-[#1e2030]"
-              :class="authStore.user?.username === entry.username ? 'bg-[#1e1a30]' : ''"
+              :class="authStore.user?.username === entry.username ? 'bg-[#1c1208]' : ''"
             >
               <td class="px-5 py-4 text-white font-bold w-16">
                 <span v-if="entry.rank <= 3">{{ rankEmoji[entry.rank - 1] }}</span>
@@ -99,10 +99,10 @@ const rankEmoji = ['🥇', '🥈', '🥉']
               </td>
               <td class="px-5 py-4 text-white">
                 {{ entry.username }}
-                <span v-if="authStore.user?.username === entry.username" class="ml-2 text-[0.7rem] text-[#8c52ff] font-semibold">(toi)</span>
+                <span v-if="authStore.user?.username === entry.username" class="ml-2 text-[0.7rem] text-[#f97316] font-semibold">(toi)</span>
               </td>
               <td class="px-5 py-4 text-right">
-                <span class="bg-[#8c52ff] text-white text-xs font-bold px-3 py-1 rounded-full">
+                <span class="bg-[#f97316] text-white text-xs font-bold px-3 py-1 rounded-full">
                   {{ entry.badgeCount }} / 28
                 </span>
               </td>

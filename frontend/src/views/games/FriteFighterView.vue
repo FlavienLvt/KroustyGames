@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="flex justify-between items-center w-full max-w-[600px] mb-5 gap-5">
       <div class="flex-1">
-        <h1 class="text-[2.5rem] font-extrabold m-0 text-[#8c52ff] tracking-[-1px]">Frite Fighter</h1>
+        <h1 class="text-[2.5rem] font-extrabold m-0 text-[#f97316] tracking-[-1px]">Frite Fighter</h1>
         <p class="m-0 text-[#63667c] text-[0.9rem] leading-[1.4]">Écrase les nuggets avant qu'ils s'échappent ! Évite les frites pièges !</p>
       </div>
       <div class="flex-shrink-0 flex items-center gap-3">
@@ -12,7 +12,7 @@
           <strong class="text-[1.5rem] font-bold">{{ timeLeft }}s</strong>
         </div>
         <div class="bg-[#232533] px-5 py-2.5 rounded-xl text-center shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
-          <span class="block text-[0.75rem] text-[#8c52ff] font-bold">SCORE</span>
+          <span class="block text-[0.75rem] text-[#f97316] font-bold">SCORE</span>
           <strong class="text-[1.5rem] font-bold">{{ score }}</strong>
         </div>
       </div>
@@ -49,7 +49,7 @@
           Évite les <strong class="text-red-400">frites 🍟</strong> (−1 pt) — et guette les <strong class="text-yellow-300">étoiles 🌟</strong> (+3 pts) !
         </p>
         <button
-          class="font-bold border-none rounded-full cursor-pointer bg-[#8c52ff] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
+          class="font-bold border-none rounded-full cursor-pointer bg-[#f97316] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
           @click="startGame"
         >
           Jouer
@@ -62,9 +62,9 @@
         class="absolute inset-0 bg-[rgba(15,16,22,0.88)] flex flex-col justify-center items-center rounded-[15px] z-10 backdrop-blur-sm"
       >
         <h2 class="text-[2.5rem] mb-2 text-white text-center">Temps écoulé ! ⏰</h2>
-        <p class="text-[1.4rem] text-[#8c52ff] mb-6 font-bold">Score final : {{ score }} pts</p>
+        <p class="text-[1.4rem] text-[#f97316] mb-6 font-bold">Score final : {{ score }} pts</p>
         <button
-          class="font-bold border-none rounded-full cursor-pointer bg-[#8c52ff] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
+          class="font-bold border-none rounded-full cursor-pointer bg-[#f97316] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
           @click="startGame"
         >
           Rejouer
@@ -97,7 +97,7 @@
         >
           <div
             class="h-full rounded-full transition-none"
-            :class="target.type === 'frite' ? 'bg-red-500' : target.type === 'golden' ? 'bg-yellow-400' : 'bg-[#8c52ff]'"
+            :class="target.type === 'frite' ? 'bg-red-500' : target.type === 'golden' ? 'bg-yellow-400' : 'bg-[#f97316]'"
             :style="{ width: target.remainingPct + '%' }"
           ></div>
         </div>

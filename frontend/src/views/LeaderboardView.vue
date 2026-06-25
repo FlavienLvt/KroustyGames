@@ -110,7 +110,7 @@ onMounted(() => fetchLeaderboard(selectedGame.value))
 }
 
 .tab:hover { background: #232533; color: #fff; }
-.tab.active { background: #8c52ff; border-color: #8c52ff; color: #fff; font-weight: 600; }
+.tab.active { background: #f97316; border-color: #f97316; color: #fff; font-weight: 600; }
 
 .state {
   color: #63667c;
@@ -145,5 +145,5 @@ onMounted(() => fetchLeaderboard(selectedGame.value))
 .leaderboard-table tr.podium td { color: #fff; }
 
 .rank { width: 48px; font-weight: bold; font-size: 1.1rem; }
-.score { color: #8c52ff; font-weight: 700; font-size: 1rem; }
+.score { color: #f97316; font-weight: 700; font-size: 1rem; }
 </style>

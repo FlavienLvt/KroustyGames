@@ -17,8 +17,8 @@
     <!-- ── Top picks — hero cinématique ───────────────────────────── -->
     <section v-if="topPicks.length > 0">
       <div class="flex items-center gap-3 mb-5">
-        <span class="block w-[3px] h-5 bg-[#8c52ff] rounded-full"></span>
-        <h2 class="text-xs font-bold tracking-[0.15em] uppercase text-[#8c7aaa] m-0">Sélection pour vous</h2>
+        <span class="block w-[3px] h-5 bg-[#f97316] rounded-full"></span>
+        <h2 class="text-xs font-bold tracking-[0.15em] uppercase text-[#c4844a] m-0">Sélection pour vous</h2>
       </div>
 
       <div class="flex gap-3 h-[460px]">
@@ -42,7 +42,7 @@
             {{ topPicks[0].badge }}
           </div>
           <div class="absolute bottom-0 left-0 right-0 p-6">
-            <p class="text-[0.7rem] font-bold uppercase tracking-[0.2em] text-[#a47fff] mb-2 m-0">À la une</p>
+            <p class="text-[0.7rem] font-bold uppercase tracking-[0.2em] text-[#fb923c] mb-2 m-0">À la une</p>
             <h3 class="text-[1.9rem] font-extrabold text-white m-0 leading-tight">{{ topPicks[0].title }}</h3>
             <p class="text-sm text-white/50 mt-2.5 m-0 group-hover:text-white/80 transition-colors duration-300">
               Jouer maintenant →
@@ -84,7 +84,7 @@
       <div class="flex items-center justify-between mb-5">
         <div class="flex items-center gap-3">
           <span class="block w-[3px] h-5 bg-[#00d68f] rounded-full"></span>
-          <h2 class="text-xs font-bold tracking-[0.15em] uppercase text-[#8c7aaa] m-0">Jeux en vedette</h2>
+          <h2 class="text-xs font-bold tracking-[0.15em] uppercase text-[#c4844a] m-0">Jeux en vedette</h2>
         </div>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -119,9 +119,9 @@
       <div class="flex items-center justify-between mb-5">
         <div class="flex items-center gap-3">
           <span class="block w-[3px] h-5 bg-[#ff6b35] rounded-full"></span>
-          <h2 class="text-xs font-bold tracking-[0.15em] uppercase text-[#8c7aaa] m-0">Nouveaux jeux</h2>
+          <h2 class="text-xs font-bold tracking-[0.15em] uppercase text-[#c4844a] m-0">Nouveaux jeux</h2>
         </div>
-        <router-link to="/nouveautes" class="text-[#8c52ff] text-sm font-medium no-underline hover:text-[#b07fff] transition-colors duration-200">
+        <router-link to="/nouveautes" class="text-[#f97316] text-sm font-medium no-underline hover:text-[#fdba74] transition-colors duration-200">
           Voir tous →
         </router-link>
       </div>
@@ -169,7 +169,7 @@ const BADGE_CLASSES = {
   yellow: 'bg-yellow-400 text-black',
   blue:   'bg-[#00b4d8] text-white',
   red:    'bg-red-500 text-white',
-  purple: 'bg-[#8c52ff] text-white',
+  purple: 'bg-[#f97316] text-white',
 }
 
 function badgeClass(type) {

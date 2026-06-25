@@ -54,7 +54,7 @@ const gameSeed = [
   {
     title: 'Krousty Crush',
     slug: 'krousty-crush',
-    image: 'https://placehold.co/300x200/1e1e24/8c52ff?text=Krousty+Crush',
+    image: '/thumbnails/thumbnail-krousty-crush.svg',
     badge: 'New',
     badgeType: 'purple',
     description: 'Aligne 3 nuggets ou plus pour les faire exploser !',
@@ -64,7 +64,7 @@ const gameSeed = [
   {
     title: 'Krousty Survivors',
     slug: 'krousty-survivors',
-    image: 'https://placehold.co/300x200/1e1e24/e63946?text=Krousty+Survivors',
+    image: '/thumbnails/thumbnail-krousty-survivors.svg',
     badge: 'New',
     badgeType: 'red',
     description: 'Survie des vagues infinies de friteuses ennemies !',
@@ -74,7 +74,7 @@ const gameSeed = [
   {
     title: 'Angry Nuggets',
     slug: 'angry-nuggets',
-    image: 'https://placehold.co/300x200/1e1e24/f4a261?text=Angry+Nuggets',
+    image: '/thumbnails/thumbnail-angry-nuggets.svg',
     badge: 'New',
     badgeType: 'yellow',
     description: 'Lance des nuggets sur les structures ennemies avec ta catapulte !',

@@ -402,7 +402,7 @@ export default {
       <p class="text-lg font-bold" :class="resultWin ? 'text-green-400' : 'text-red-400'">{{ resultMsg }}</p>
       <template v-if="resultWin">
         <button v-if="level < 3" @click="nextLevel"
-          class="bg-[#8c52ff] text-white px-6 py-2 rounded-full font-bold hover:bg-[#7a3fff] transition">
+          class="bg-[#f97316] text-white px-6 py-2 rounded-full font-bold hover:bg-[#ea580c] transition">
           Niveau suivant →
         </button>
         <button v-else @click="nextLevel"
@@ -421,7 +421,7 @@ export default {
       <p class="text-white font-bold text-lg">⬆️ Choisis ton amélioration !</p>
       <div class="flex gap-4 flex-wrap justify-center">
         <button v-for="upg in pendingUpgrades" :key="upg.id" @click="chooseUpgrade(upg)"
-          class="bg-[#1e2030] border border-[#8c52ff] rounded-xl p-5 flex flex-col items-center gap-2 hover:bg-[#2a2c3f] transition cursor-pointer w-44">
+          class="bg-[#1e2030] border border-[#f97316] rounded-xl p-5 flex flex-col items-center gap-2 hover:bg-[#2a2c3f] transition cursor-pointer w-44">
           <span class="text-4xl">{{ upg.icon }}</span>
           <span class="text-white font-bold text-sm text-center">{{ upg.label }}</span>
           <span class="text-[#b0b3c6] text-xs text-center">{{ upg.desc }}</span>

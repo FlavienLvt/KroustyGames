@@ -14,7 +14,7 @@
   --text-muted:      #b0b3c6;
   --text-dim:        #63667c;
   --border-color:    #232533;
-  --accent:          #8c52ff;
+  --accent:          #f97316;
   --nav-active-bg:   #232533;
   --nav-active-text: #ffffff;
   --scrollbar-thumb: #2a2c3f;
@@ -32,9 +32,9 @@
   --text-muted:      #5c5a7c;
   --text-dim:        #9896b0;
   --border-color:    #dddaf0;
-  --accent:          #7b3fe4;
-  --nav-active-bg:   #ede9ff;
-  --nav-active-text: #7b3fe4;
+  --accent:          #ea580c;
+  --nav-active-bg:   #fff3eb;
+  --nav-active-text: #ea580c;
   --scrollbar-thumb: #c5c2e0;
 }
 

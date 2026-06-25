@@ -77,5 +77,5 @@
   <!-- Bottom label -->
   <rect x="0" y="162" width="300" height="38" fill="#0d0e17" opacity="0.92"/>
   <rect x="0" y="162" width="300" height="1" fill="#2a2c3f"/>
-  <text x="150" y="187" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#8c52ff" text-anchor="middle" letter-spacing="2">KROUSTY RUN</text>
+  <text x="150" y="187" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#f97316" text-anchor="middle" letter-spacing="2">KROUSTY RUN</text>
 </svg>

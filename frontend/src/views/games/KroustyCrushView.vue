@@ -167,7 +167,7 @@ export default {
       <p class="text-[#b0b3c6] text-sm">Combos = multiplicateur de score ×1 à ×5</p>
       <button
         @click="startGame"
-        class="bg-[#8c52ff] text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-[#7a3fff] transition"
+        class="bg-[#f97316] text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-[#ea580c] transition"
       >
         Jouer !
       </button>
@@ -176,8 +176,8 @@ export default {
     <!-- Game over -->
     <div v-if="screen === 'over'" class="flex flex-col items-center gap-4">
       <p class="text-2xl font-bold text-white">Partie terminée !</p>
-      <p class="text-[#8c52ff] text-3xl font-extrabold">{{ score.toLocaleString('fr-FR') }} pts</p>
-      <button @click="startGame" class="bg-[#8c52ff] text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-[#7a3fff] transition">
+      <p class="text-[#f97316] text-3xl font-extrabold">{{ score.toLocaleString('fr-FR') }} pts</p>
+      <button @click="startGame" class="bg-[#f97316] text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-[#ea580c] transition">
         Rejouer
       </button>
     </div>
@@ -211,7 +211,7 @@ export default {
         class="w-11 h-11 rounded-xl text-2xl flex items-center justify-center transition-all duration-100 select-none"
         :class="[
           selected === i
-            ? 'bg-[#8c52ff] scale-110 shadow-[0_0_12px_rgba(140,82,255,0.7)]'
+            ? 'bg-[#f97316] scale-110 shadow-[0_0_12px_rgba(249,115,22,0.7)]'
             : flashing.includes(i)
               ? 'bg-yellow-400 scale-125'
               : 'bg-[#232533] hover:bg-[#2e3048] hover:scale-105'

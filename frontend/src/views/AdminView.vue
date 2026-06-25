@@ -273,7 +273,7 @@ onMounted(() => fetchUsers())
             <span
               class="px-2 py-0.5 rounded text-xs font-bold"
               :style="user.role === 'admin'
-                ? 'background: rgba(140,82,255,0.15); color: var(--accent)'
+                ? 'background: rgba(249,115,22,0.15); color: var(--accent)'
                 : 'background: var(--bg-card); color: var(--text-muted)'"
             >
               {{ user.role }}
@@ -284,7 +284,7 @@ onMounted(() => fetchUsers())
             <button
               @click="openEditUser(user)"
               class="px-3 py-1.5 rounded-lg text-xs font-semibold transition"
-              style="background: rgba(140,82,255,0.12); color: var(--accent)"
+              style="background: rgba(249,115,22,0.12); color: var(--accent)"
             >
               Modifier
             </button>
@@ -359,7 +359,7 @@ onMounted(() => fetchUsers())
             <button
               @click="openEditScore(score)"
               class="px-3 py-1.5 rounded-lg text-xs font-semibold"
-              style="background: rgba(140,82,255,0.12); color: var(--accent)"
+              style="background: rgba(249,115,22,0.12); color: var(--accent)"
             >
               Modifier
             </button>

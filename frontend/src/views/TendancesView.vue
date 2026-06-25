@@ -55,7 +55,7 @@ onMounted(async () => {
       <div
         v-for="(game, i) in games"
         :key="game.id"
-        class="group flex items-center gap-5 bg-[#161722] border border-[#232533] rounded-xl p-4 cursor-pointer hover:bg-[#1e2030] hover:border-[#8c52ff] transition-all duration-200"
+        class="group flex items-center gap-5 bg-[#161722] border border-[#232533] rounded-xl p-4 cursor-pointer hover:bg-[#1e2030] hover:border-[#f97316] transition-all duration-200"
         @click="router.push({ name: game.slug })"
       >
         <!-- Rang -->
@@ -73,7 +73,7 @@ onMounted(async () => {
 
         <!-- Infos -->
         <div class="flex-1 min-w-0">
-          <h3 class="text-white font-bold text-[1rem] m-0 leading-tight group-hover:text-[#8c52ff] transition-colors">
+          <h3 class="text-white font-bold text-[1rem] m-0 leading-tight group-hover:text-[#f97316] transition-colors">
             {{ game.title }}
           </h3>
           <p class="text-[#63667c] text-xs mt-1 m-0 truncate">{{ game.description }}</p>
@@ -81,7 +81,7 @@ onMounted(async () => {
 
         <!-- Stats -->
         <div class="flex flex-col items-end gap-1 flex-shrink-0 text-right">
-          <span class="text-[#8c52ff] font-bold text-sm">
+          <span class="text-[#f97316] font-bold text-sm">
             {{ game.count }} partie{{ game.count > 1 ? 's' : '' }}
           </span>
           <span v-if="game.maxScore" class="text-[#63667c] text-xs">
@@ -90,7 +90,7 @@ onMounted(async () => {
           <span v-else class="text-[#3a3c4e] text-xs italic">Pas encore joué</span>
         </div>
 
-        <span class="text-[#3a3c4e] group-hover:text-[#8c52ff] transition-colors text-lg flex-shrink-0">→</span>
+        <span class="text-[#3a3c4e] group-hover:text-[#f97316] transition-colors text-lg flex-shrink-0">→</span>
       </div>
     </div>
   </div>

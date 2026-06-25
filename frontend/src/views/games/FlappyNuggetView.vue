@@ -3,11 +3,11 @@
     <!-- Header -->
     <div class="flex justify-between items-center w-full max-w-[400px] mb-5 gap-5">
       <div class="flex-1">
-        <h1 class="text-[2.5rem] font-extrabold m-0 text-[#8c52ff] tracking-[-1px]">Flappy Nugget</h1>
+        <h1 class="text-[2.5rem] font-extrabold m-0 text-[#f97316] tracking-[-1px]">Flappy Nugget</h1>
         <p class="m-0 text-[#63667c] text-[0.9rem] leading-[1.4]">Cliquez ou appuyez sur Espace pour faire voler le nugget !</p>
       </div>
       <div class="bg-[#232533] px-5 py-2.5 rounded-xl text-center shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
-        <span class="block text-[0.75rem] text-[#8c52ff] font-bold">SCORE</span>
+        <span class="block text-[0.75rem] text-[#f97316] font-bold">SCORE</span>
         <strong class="text-[1.5rem] font-bold">{{ score }}</strong>
       </div>
     </div>
@@ -23,7 +23,7 @@
         <h2 class="text-[2.5rem] mb-2.5 text-white">Game Over 💀</h2>
         <p class="text-[1.2rem] text-[#ccc] mb-5">Score final : {{ score }}</p>
         <button
-          class="font-bold border-none rounded-full cursor-pointer bg-[#8c52ff] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
+          class="font-bold border-none rounded-full cursor-pointer bg-[#f97316] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
           @click="startGame"
         >
           Rejouer
@@ -34,7 +34,7 @@
       <div v-if="!gameStarted && !gameOver" class="absolute inset-0 bg-[rgba(15,16,22,0.7)] flex flex-col justify-center items-center rounded-[15px] z-20 backdrop-blur-sm text-center">
         <h2 class="text-[2.5rem] mb-2.5 text-white">Prêt à voler ?</h2>
         <button
-          class="font-bold border-none rounded-full cursor-pointer bg-[#8c52ff] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
+          class="font-bold border-none rounded-full cursor-pointer bg-[#f97316] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
           @click="startGame"
         >
           Jouer

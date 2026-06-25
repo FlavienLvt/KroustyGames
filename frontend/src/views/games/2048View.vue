@@ -3,11 +3,11 @@
     <!-- Header -->
     <div class="flex justify-between items-center w-full max-w-[450px] mb-8">
       <div>
-        <h1 class="text-[3rem] font-extrabold m-0 text-[#8c52ff] tracking-[-1px]">2048</h1>
+        <h1 class="text-[3rem] font-extrabold m-0 text-[#f97316] tracking-[-1px]">2048</h1>
         <p class="m-0 text-[#63667c] text-[0.9rem]">Rejoins les nombres pour obtenir la tuile <strong>2048</strong> !</p>
       </div>
       <div class="bg-[#232533] px-5 py-2.5 rounded-xl text-center shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
-        <span class="block text-[0.75rem] text-[#8c52ff] font-bold">SCORE</span>
+        <span class="block text-[0.75rem] text-[#f97316] font-bold">SCORE</span>
         <strong class="text-[1.5rem] font-bold">{{ score }}</strong>
       </div>
     </div>
@@ -18,7 +18,7 @@
       <div v-if="gameOver || gameWon" class="absolute inset-0 bg-[rgba(15,16,22,0.85)] flex flex-col justify-center items-center rounded-[15px] z-10 backdrop-blur-sm">
         <h2 class="text-[2.5rem] mb-5 text-white">{{ gameWon ? 'Victoire ! 🎉' : 'Game Over 💀' }}</h2>
         <button
-          class="font-bold border-none rounded-full cursor-pointer bg-[#8c52ff] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
+          class="font-bold border-none rounded-full cursor-pointer bg-[#f97316] text-white px-8 py-3 text-[1.1rem] transition-transform duration-200 hover:scale-105"
           @click="resetGame"
         >
           Rejouer
@@ -68,8 +68,8 @@ import { useScoresStore } from '../../stores/scores';
 const TILE_STYLES = {
   2:    { backgroundColor: '#2a2c3f' },
   4:    { backgroundColor: '#313346' },
-  8:    { backgroundColor: '#6a35ff', boxShadow: '0 0 10px rgba(106, 53, 255, 0.4)' },
-  16:   { backgroundColor: '#8c52ff', boxShadow: '0 0 15px rgba(140, 82, 255, 0.5)' },
+  8:    { backgroundColor: '#c2410c', boxShadow: '0 0 10px rgba(249, 115, 22, 0.4)' },
+  16:   { backgroundColor: '#f97316', boxShadow: '0 0 15px rgba(249, 115, 22, 0.5)' },
   32:   { backgroundColor: '#00b4d8', boxShadow: '0 0 15px rgba(0, 180, 216, 0.5)' },
   64:   { backgroundColor: '#0096b4' },
   128:  { backgroundColor: '#ff4d4d', boxShadow: '0 0 15px rgba(255, 77, 77, 0.5)', fontSize: '1.7rem' },

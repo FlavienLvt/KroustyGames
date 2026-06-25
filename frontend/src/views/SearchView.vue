@@ -14,7 +14,7 @@ const BADGE_CLASSES = {
   yellow: 'bg-yellow-400 text-black',
   blue:   'bg-[#00b4d8] text-white',
   red:    'bg-red-500 text-white',
-  purple: 'bg-[#8c52ff] text-white',
+  purple: 'bg-[#f97316] text-white',
 }
 function badgeClass(type) {
   return BADGE_CLASSES[type] ?? 'bg-gray-500 text-white'

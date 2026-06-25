@@ -8,7 +8,7 @@ const router = useRouter()
 
 const CATEGORIES = {
   puzzle: {
-    label: 'Puzzle', icon: '🧩', color: '#8c52ff',
+    label: 'Puzzle', icon: '🧩', color: '#f97316',
     slugs: ['2048', 'krousty-crush', 'angry-nuggets']
   },
   arcade: {
@@ -76,7 +76,7 @@ watch(() => props.category, load)
           v-if="game.badge"
           class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded text-[0.6rem] font-bold uppercase tracking-wider z-10"
           :class="{
-            'bg-[#8c52ff] text-white': game.badgeType === 'purple',
+            'bg-[#f97316] text-white': game.badgeType === 'purple',
             'bg-yellow-400 text-black': game.badgeType === 'yellow',
             'bg-red-500 text-white': game.badgeType === 'red',
             'bg-[#00b4d8] text-white': game.badgeType === 'blue',

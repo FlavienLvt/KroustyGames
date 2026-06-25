@@ -119,9 +119,9 @@
   </g>
 
   <!-- Shields (mid-field) -->
-  <rect x="30"  cy="120" x="30"  y="118" width="38" height="12" rx="4" fill="#22c55e" opacity="0.5"/>
-  <rect x="131" y="118" width="38" height="12" rx="4" fill="#22c55e" opacity="0.5"/>
-  <rect x="232" y="118" width="38" height="12" rx="4" fill="#22c55e" opacity="0.5"/>
+  <rect x="30" y="118" width="38" height="12" rx="4" fill="#f97316" opacity="0.5"/>
+  <rect x="131" y="118" width="38" height="12" rx="4" fill="#f97316" opacity="0.5"/>
+  <rect x="232" y="118" width="38" height="12" rx="4" fill="#f97316" opacity="0.5"/>
   <!-- damage on shields -->
   <rect x="40"  y="118" width="10" height="12" rx="2" fill="#07080f" opacity="0.6"/>
   <rect x="145" y="118" width="8"  height="12" rx="2" fill="#07080f" opacity="0.5"/>

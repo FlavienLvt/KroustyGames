@@ -42,7 +42,7 @@ onMounted(async () => {
 <template>
   <div>
     <div class="flex items-center gap-3 mb-8">
-      <span class="block w-[3px] h-6 bg-[#8c52ff] rounded-full"></span>
+      <span class="block w-[3px] h-6 bg-[#f97316] rounded-full"></span>
       <div>
         <h1 class="text-3xl font-extrabold text-white m-0">✨ Nouveautés</h1>
         <p class="text-[#b0b3c6] text-sm mt-1 m-0">Les jeux les moins joués — soyez les premiers !</p>
@@ -85,7 +85,7 @@ onMounted(async () => {
 
         <!-- Title -->
         <div class="p-3 bg-[#161722]">
-          <h3 class="text-white font-bold text-[0.85rem] m-0 leading-tight group-hover:text-[#8c52ff] transition-colors">
+          <h3 class="text-white font-bold text-[0.85rem] m-0 leading-tight group-hover:text-[#f97316] transition-colors">
             {{ game.title }}
           </h3>
         </div>

@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1b26"/>
+      <stop offset="100%" stop-color="#0d0e17"/>
+    </linearGradient>
+    <linearGradient id="gem-orange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="gem-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5c842"/>
+      <stop offset="100%" stop-color="#d49010"/>
+    </linearGradient>
+    <linearGradient id="gem-red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#e63946"/>
+    </linearGradient>
+    <linearGradient id="gem-teal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="gem-blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <filter id="glow-match">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-soft">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="300" height="200" fill="url(#bg)"/>
+
+  <!-- Grid background cells -->
+  <!-- Row 1 -->
+  <rect x="18" y="14" width="46" height="34" rx="6" fill="#1e2030"/>
+  <rect x="70" y="14" width="46" height="34" rx="6" fill="#1e2030"/>
+  <rect x="122" y="14" width="46" height="34" rx="6" fill="#1e2030"/>
+  <rect x="174" y="14" width="46" height="34" rx="6" fill="#1e2030"/>
+  <rect x="226" y="14" width="46" height="34" rx="6" fill="#1e2030"/>
+  <!-- Row 2 -->
+  <rect x="18" y="54" width="46" height="34" rx="6" fill="#1e2030"/>
+  <rect x="70" y="54" width="46" height="34" rx="6" fill="#1e2030"/>
+  <rect x="122" y="54" width="46" height="34" rx="6" fill="#1e2030"/>
+  <rect x="174" y="54" width="46" height="34" rx="6" fill="#1e2030"/>
+  <rect x="226" y="54" width="46" height="34" rx="6" fill="#1e2030"/>
+  <!-- Row 3 -->
+  <rect x="18" y="94" width="46" height="34" rx="6" fill="#1e2030"/>
+  <rect x="70" y="94" width="46" height="34" rx="6" fill="#1e2030"/>
+  <rect x="122" y="94" width="46" height="34" rx="6" fill="#1e2030"/>
+  <rect x="174" y="94" width="46" height="34" rx="6" fill="#1e2030"/>
+  <rect x="226" y="94" width="46" height="34" rx="6" fill="#1e2030"/>
+
+  <!-- Row 1 gems -->
+  <ellipse cx="41"  cy="31" rx="16" ry="11" fill="url(#gem-gold)"/>
+  <ellipse cx="93"  cy="31" rx="16" ry="11" fill="url(#gem-red)"/>
+  <ellipse cx="145" cy="31" rx="16" ry="11" fill="url(#gem-blue)"/>
+  <ellipse cx="197" cy="31" rx="16" ry="11" fill="url(#gem-gold)"/>
+  <ellipse cx="249" cy="31" rx="16" ry="11" fill="url(#gem-teal)"/>
+
+  <!-- Row 2 gems — middle 3 MATCHING (orange glow) -->
+  <ellipse cx="41"  cy="71" rx="16" ry="11" fill="url(#gem-blue)"/>
+  <!-- MATCH trio: highlight -->
+  <ellipse cx="93"  cy="71" rx="18" ry="13" fill="url(#gem-orange)" filter="url(#glow-match)"/>
+  <ellipse cx="145" cy="71" rx="18" ry="13" fill="url(#gem-orange)" filter="url(#glow-match)"/>
+  <ellipse cx="197" cy="71" rx="18" ry="13" fill="url(#gem-orange)" filter="url(#glow-match)"/>
+  <ellipse cx="249" cy="71" rx="16" ry="11" fill="url(#gem-red)"/>
+
+  <!-- Match highlight ring -->
+  <rect x="68" y="52" width="178" height="40" rx="8" fill="none" stroke="#fb923c" stroke-width="2" opacity="0.6" stroke-dasharray="5,3"/>
+
+  <!-- Shine dots on matched gems -->
+  <circle cx="90"  cy="66" r="3" fill="#fff" opacity="0.55"/>
+  <circle cx="142" cy="66" r="3" fill="#fff" opacity="0.55"/>
+  <circle cx="194" cy="66" r="3" fill="#fff" opacity="0.55"/>
+
+  <!-- Row 3 gems -->
+  <ellipse cx="41"  cy="111" rx="16" ry="11" fill="url(#gem-teal)"/>
+  <ellipse cx="93"  cy="111" rx="16" ry="11" fill="url(#gem-gold)"/>
+  <ellipse cx="145" cy="111" rx="16" ry="11" fill="url(#gem-red)"/>
+  <ellipse cx="197" cy="111" rx="16" ry="11" fill="url(#gem-blue)"/>
+  <ellipse cx="249" cy="111" rx="16" ry="11" fill="url(#gem-orange)" filter="url(#glow-soft)"/>
+
+  <!-- Nugget faces on orange gems (matched) -->
+  <circle cx="93"  cy="69" r="3.5" fill="#1a1a1a"/>
+  <circle cx="94"  cy="68" r="1.2" fill="#fff"/>
+  <circle cx="145" cy="69" r="3.5" fill="#1a1a1a"/>
+  <circle cx="146" cy="68" r="1.2" fill="#fff"/>
+  <circle cx="197" cy="69" r="3.5" fill="#1a1a1a"/>
+  <circle cx="198" cy="68" r="1.2" fill="#fff"/>
+
+  <!-- Score popup -->
+  <rect x="186" y="34" width="72" height="28" rx="8" fill="#f97316" opacity="0.95"/>
+  <text x="222" y="53" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff" text-anchor="middle">+150 pts</text>
+
+  <!-- Combo burst stars -->
+  <text x="82" y="46" font-family="Arial, sans-serif" font-size="14" fill="#f5c842" opacity="0.9">✦</text>
+  <text x="206" y="48" font-family="Arial, sans-serif" font-size="11" fill="#f5c842" opacity="0.7">✦</text>
+  <text x="128" y="44" font-family="Arial, sans-serif" font-size="10" fill="#fff" opacity="0.5">✦</text>
+
+  <!-- Bottom label -->
+  <rect x="0" y="162" width="300" height="38" fill="#0d0e17"/>
+  <rect x="0" y="162" width="300" height="1" fill="#2a2c3f"/>
+  <text x="150" y="187" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#f97316" text-anchor="middle" letter-spacing="2">KROUSTY CRUSH</text>
+</svg>
