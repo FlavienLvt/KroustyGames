@@ -12,8 +12,8 @@ docker compose up --build
 
 Services exposés :
 - Frontend: http://127.0.0.1:8080
-- Backend: http://127.0.0.1:5000
-- PostgreSQL: 127.0.0.1:5433
+- Backend: http://127.0.0.1:5001
+- PostgreSQL: 127.0.0.1:5441
 
 ## Installation
 
