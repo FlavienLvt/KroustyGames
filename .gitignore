@@ -1,0 +1,34 @@
+# Fichiers de dépendances
+# Ignore les dossiers contenant les paquets téléchargés par les gestionnaires de paquets.
+# C'est la première chose à ignorer pour éviter de versionner des centaines de mégaoctets.
+node_modules/
+/frontend/node_modules
+/backend/node_modules
+
+# Fichiers de build et de sortie
+# Ignore les dossiers et fichiers générés lors du build du projet Vue.js.
+/frontend/dist
+.output
+.nuxt
+
+# Fichiers de logs et de débogage
+# Utile pour exclure les logs qui peuvent devenir volumineux.
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Fichiers d'environnement
+# Ignore les fichiers .env qui contiennent des variables sensibles (clés d'API, mots de passe de base de données, etc.).
+# Il est recommandé de versionner un fichier .env.example pour montrer les variables requises.
+.env
+.env.local
+
+# Fichiers système et de cache
+.DS_Store
+.cache/
+
+# Configuration de l'IDE
+.vscode/
+.idea/
